@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <!-- Outer golden brass rim gradient -->
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <!-- Deep jungle emerald dial background -->
+    <radialGradient id="dialGrad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="70%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </radialGradient>
+    <!-- North needle ruby/coral gradient -->
+    <linearGradient id="northGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <!-- South needle amber gold gradient -->
+    <linearGradient id="southGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer rim with drop shadow ring -->
+  <circle cx="24" cy="24" r="22" fill="url(#rimGrad)" stroke="#451a03" stroke-width="1.5"/>
+  <!-- Inner dial rim -->
+  <circle cx="24" cy="24" r="19" fill="#78350f"/>
+  <circle cx="24" cy="24" r="17.5" fill="url(#dialGrad)"/>
+
+  <!-- Compass cardinal ticks -->
+  <line x1="24" y1="8" x2="24" y2="11" stroke="#fde047" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="24" y1="37" x2="24" y2="40" stroke="#fde047" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="8" y1="24" x2="11" y2="24" stroke="#fde047" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="37" y1="24" x2="40" y2="24" stroke="#fde047" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Subtle compass rose stars -->
+  <polygon points="24,12 25.5,22 36,24 25.5,26 24,36 22.5,26 12,24 22.5,22" fill="#047857" opacity="0.6"/>
+
+  <!-- North needle (pointing up) -->
+  <polygon points="24,9 27,24 24,22" fill="url(#northGrad)"/>
+  <polygon points="24,9 21,24 24,22" fill="#ef4444"/>
+
+  <!-- South needle (pointing down) -->
+  <polygon points="24,39 27,24 24,26" fill="url(#southGrad)"/>
+  <polygon points="24,39 21,24 24,26" fill="#fde047"/>
+
+  <!-- Center pivot pin -->
+  <circle cx="24" cy="24" r="3.5" fill="#fde047" stroke="#78350f" stroke-width="1"/>
+  <circle cx="23.2" cy="23.2" r="1" fill="#ffffff" opacity="0.9"/>
+</svg>
