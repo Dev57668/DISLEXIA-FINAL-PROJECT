@@ -177,6 +177,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The bird flies in the sky.",
+        options: ["The bird flies in the sky.","The bird swims in stone.","The bird walks underwater."],
         acceptedAnswers: ["the bird flies in the sky.", "the bird flies in the sky", "bird flies in the sky"],
         hint: "Think about how feathered creatures spread their wings and glide through the open air."
       },
@@ -185,6 +186,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The dog runs in the park.",
+        options: ["The dog runs in the park.","The dog flies to the moon.","The dog sleeps in the cloud."],
         acceptedAnswers: ["the dog runs in the park.", "the dog runs in the park", "dog runs in the park"],
         hint: "Think about where dogs love to fetch balls, exercise, and run on green grass."
       },
@@ -193,6 +195,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The fish swims in water.",
+        options: ["The fish swims in water.","The fish walks on trees.","The fish flies with leaves."],
         acceptedAnswers: ["the fish swims in water.", "the fish swims in water", "fish swims in water"],
         hint: "Fish need a water habitat to breathe with their gills and swim."
       },
@@ -201,6 +204,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The boy reads a book.",
+        options: ["The boy reads a book.","The boy drinks a shoe.","The boy eats a pencil."],
         acceptedAnswers: ["the boy reads a book.", "the boy reads a book", "boy reads a book"],
         hint: "Think about what a curious student does with pages of letters and stories."
       },
@@ -209,6 +213,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The girl drinks water.",
+        options: ["The girl drinks water.","The girl wears the water.","The girl bakes the pencil."],
         acceptedAnswers: ["the girl drinks water.", "the girl drinks water", "girl drinks water"],
         hint: "What refreshing liquid do we sip from a glass when feeling thirsty?"
       },
@@ -217,6 +222,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The sun shines in the sky.",
+        options: ["The sun shines in the sky.","The sun swims in the pond.","The sun jumps in the room."],
         acceptedAnswers: ["the sun shines in the sky.", "the sun shines in the sky", "sun shines in the sky"],
         hint: "What provides bright light and gentle warmth from high above?"
       },
@@ -225,6 +231,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The teacher writes on the board.",
+        options: ["The teacher writes on the board.","The teacher drinks the board.","The teacher flies on the desk."],
         acceptedAnswers: ["the teacher writes on the board.", "the teacher writes on the board", "teacher writes on the board"],
         hint: "In a classroom, where does the instructor write words and lessons for everyone to see?"
       },
@@ -233,6 +240,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The cat sleeps on the mat.",
+        options: ["The cat sleeps on the mat.","The cat boils the wall.","The cat barks in the lake."],
         acceptedAnswers: ["the cat sleeps on the mat.", "the cat sleeps on the mat", "cat sleeps on the mat"],
         hint: "Think of a cozy resting spot on the floor where a kitten curls up for a nap."
       },
@@ -241,6 +249,7 @@ export const CLASS1_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The children play outside.",
+        options: ["The children play outside.","The children drive an airplane.","The children fly to the sun."],
         acceptedAnswers: ["the children play outside.", "the children play outside", "children play outside"],
         hint: "Where do students go during recess to enjoy the sunshine and fresh air?"
       }
@@ -257,11 +266,11 @@ export const CLASS2_STAGE3_BANK = [
     exercises: [
       {
         id: "c2-s3-l1-q1",
-        prompt: "Complete: SH _ P",
-        question: "Fill in the missing letter to complete the word: SH _ P",
+        prompt: "Complete: SH _ P (A large boat that sails on the ocean)",
+        question: "Fill in the missing letter to complete the word: SH _ P (A large boat that sails on the ocean)",
         answer: "SHIP",
-        acceptedAnswers: ["ship", "shop", "i", "o"],
-        hint: "Think of a large vessel that sails across oceans, or a store where you buy goods."
+        acceptedAnswers: ["ship", "i"],
+        hint: "Think of a large vessel that sails across oceans."
       },
       {
         id: "c2-s3-l1-q2",
@@ -420,6 +429,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The bird sits in the tree.",
+        options: ["The bird sits in the tree.","The bird flies underground.","The tree sits in the bird."],
         acceptedAnswers: ["the bird sits in the tree.", "the bird sits in the tree", "bird sits in the tree"],
         hint: "Think about where small birds perch to rest their wings on wooden branches."
       },
@@ -428,6 +438,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The teacher writes on the board.",
+        options: ["The teacher writes on the board.","The board writes on the teacher.","The teacher eats the board."],
         acceptedAnswers: ["the teacher writes on the board.", "the teacher writes on the board", "teacher writes on the board"],
         hint: "Think about what an educator uses to display chalk or marker notes for the class."
       },
@@ -436,6 +447,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The children play in the park.",
+        options: ["The children play in the park.","The park plays inside children.","The children fly to school on a leaf."],
         acceptedAnswers: ["the children play in the park.", "the children play in the park", "children play in the park"],
         hint: "Think of an outdoor recreational area filled with swings, slides, and grassy fields."
       },
@@ -444,6 +456,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The fish swims in the pond.",
+        options: ["The fish swims in the pond.","The pond swims on the fish.","The fish walks up the tree."],
         acceptedAnswers: ["the fish swims in the pond.", "the fish swims in the pond", "fish swims in the pond"],
         hint: "A pond is a small body of still water where aquatic life thrives."
       },
@@ -452,6 +465,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The rabbit eats a carrot.",
+        options: ["The rabbit eats a carrot.","The carrot eats a rabbit.","The rabbit reads a pencil."],
         acceptedAnswers: ["the rabbit eats a carrot.", "the rabbit eats a carrot", "rabbit eats a carrot"],
         hint: "Rabbits are furry animals that enjoy munching on crunchy orange vegetables."
       },
@@ -460,6 +474,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The boy carries his school bag.",
+        options: ["The boy carries his school bag.","The school bag carries the boy.","The boy carries the entire school."],
         acceptedAnswers: ["the boy carries his school bag.", "the boy carries his school bag", "boy carries his school bag"],
         hint: "Think about who wears the backpack on their shoulders when walking to school."
       },
@@ -468,6 +483,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The girl reads a story book.",
+        options: ["The girl reads a story book.","The story book reads the girl.","The girl drinks the story book."],
         acceptedAnswers: ["the girl reads a story book.", "the girl reads a story book", "girl reads a story book"],
         hint: "Think about what an eager student does when opening a novel or fairy tale."
       },
@@ -476,6 +492,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The dog sleeps under the table.",
+        options: ["The dog sleeps under the table.","The table sleeps under the dog.","The dog flies over the moon."],
         acceptedAnswers: ["the dog sleeps under the table.", "the dog sleeps under the table", "dog sleeps under the table"],
         hint: "Pets often rest beneath furniture where it is quiet and shaded."
       },
@@ -484,6 +501,7 @@ export const CLASS2_STAGE3_BANK = [
         prompt: "Which sentence makes sense?",
         question: "Which sentence makes sense?",
         answer: "The sun shines during the day.",
+        options: ["The sun shines during the day.","The sun swims in a puddle.","The day shines the sun."],
         acceptedAnswers: ["the sun shines during the day.", "the sun shines during the day", "sun shines during the day"],
         hint: "Daylight is created when the sun illuminates our side of the Earth."
       }
@@ -583,6 +601,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The boy carried his books to school.",
+        options: ["The boy carried his books to school.","The boy carried the entire school to his room.","The school walked to the boy."],
         acceptedAnswers: ["the boy carried his books to school.", "the boy carried his books to school", "boy carried his books to school"],
         hint: "Think about what items fit inside a student's backpack on the way to class."
       },
@@ -591,6 +610,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The bird flew across the sky.",
+        options: ["The bird flew across the sky.","The sky flew into the bird.","The bird ran under the deep soil."],
         acceptedAnswers: ["the bird flew across the sky.", "the bird flew across the sky", "bird flew across the sky"],
         hint: "Think about how birds travel with their wings through the open air."
       },
@@ -599,6 +619,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The children planted flowers in the garden.",
+        options: ["The children planted flowers in the garden.","The flowers planted children in the garden.","The children drank the flower pot."],
         acceptedAnswers: ["the children planted flowers in the garden.", "the children planted flowers in the garden", "children planted flowers in the garden"],
         hint: "Gardening involves digging soft soil and placing seeds or plant roots into the ground."
       },
@@ -607,6 +628,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The teacher explained the lesson.",
+        options: ["The teacher explained the lesson.","The lesson explained the teacher.","The teacher erased the entire classroom."],
         acceptedAnswers: ["the teacher explained the lesson.", "the teacher explained the lesson", "teacher explained the lesson"],
         hint: "Who does the talking and explaining during class time?"
       },
@@ -615,6 +637,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The family ate dinner together.",
+        options: ["The family ate dinner together.","Dinner ate the family together.","The family ate the dinner table."],
         acceptedAnswers: ["the family ate dinner together.", "the family ate dinner together", "family ate dinner together"],
         hint: "Think about what people sit down to eat at the dining table in the evening."
       },
@@ -623,6 +646,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The dog chased the ball.",
+        options: ["The dog chased the ball.","The ball chased the dog through the sky.","The dog flew with the cloud."],
         acceptedAnswers: ["the dog chased the ball.", "the dog chased the ball", "dog chased the ball"],
         hint: "Dogs enjoy sprinting after a thrown toy across the grass."
       },
@@ -631,6 +655,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The girl wrote her homework.",
+        options: ["The girl wrote her homework.","The homework wrote the girl.","The girl chewed the wooden desk."],
         acceptedAnswers: ["the girl wrote her homework.", "the girl wrote her homework", "girl wrote her homework"],
         hint: "Students use pens or pencils to complete assignments on paper."
       },
@@ -639,6 +664,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The students listened carefully.",
+        options: ["The students listened carefully.","The chairs listened carefully.","The students erased their ears."],
         acceptedAnswers: ["the students listened carefully.", "the students listened carefully", "students listened carefully"],
         hint: "Good listeners pay quiet attention with their ears when someone speaks."
       },
@@ -647,6 +673,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The rain made the ground wet.",
+        options: ["The rain made the ground wet.","The ground made the clouds wet.","The rain made the sun freeze."],
         acceptedAnswers: ["the rain made the ground wet.", "the rain made the ground wet", "rain made the ground wet"],
         hint: "When water drops fall from clouds, moisture coats the soil and grass."
       }
@@ -663,6 +690,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "What is the main idea? Reading helps us learn new things.",
         question: "What is the main idea of this sentence: 'Reading helps us learn new things'?",
         answer: "Reading is useful.",
+        options: ["Reading is useful.","Reading is boring.","Reading is impossible.","Reading takes too long."],
         acceptedAnswers: ["reading is useful.", "reading is useful", "useful"],
         hint: "Learning new skills and knowledge is beneficial and helpful in life."
       },
@@ -671,6 +699,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "What does the bird build?",
         question: "What does a mother bird build to lay her eggs?",
         answer: "A nest",
+        options: ["A nest","A car","A house of bricks","A school"],
         acceptedAnswers: ["a nest", "nest"],
         hint: "Think of a round shelter woven together from twigs, feathers, and dry grass."
       },
@@ -679,6 +708,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Where do children go to learn?",
         question: "Where do children go each weekday to study with teachers?",
         answer: "School",
+        options: ["School","Playground","Supermarket","Zoo"],
         acceptedAnswers: ["school", "a school"],
         hint: "The educational building where classrooms and libraries are found."
       },
@@ -687,6 +717,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Why should we drink water?",
         question: "Why is drinking clean water important for our bodies?",
         answer: "To stay healthy",
+        options: ["To stay healthy","To get cold","To sleep early","To fly"],
         acceptedAnswers: ["to stay healthy", "stay healthy", "healthy"],
         hint: "Hydration keeps our organs functioning properly and our energy high."
       },
@@ -695,6 +726,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "What does a teacher do?",
         question: "What is the primary role of a teacher in a school?",
         answer: "Teaches students",
+        options: ["Teaches students","Drives a bus","Fixes shoes","Paints walls"],
         acceptedAnswers: ["teaches students", "teach students", "teach"],
         hint: "Explaining lessons and guiding children through reading, writing, and math."
       },
@@ -703,6 +735,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "What do plants need to grow?",
         question: "What two natural elements do green plants need to grow?",
         answer: "Water and sunlight",
+        options: ["Water and sunlight","Juice and candy","Darkness and stones","Bread and butter"],
         acceptedAnswers: ["water and sunlight", "sunlight and water"],
         hint: "Roots absorb moisture from soil, and leaves capture rays from the sun."
       },
@@ -711,6 +744,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Who helps students learn?",
         question: "Who works in the classroom to help students learn new skills?",
         answer: "Teacher",
+        options: ["Teacher","Chef","Pilot","Mechanic"],
         acceptedAnswers: ["teacher", "a teacher"],
         hint: "The profession dedicated to teaching students in school."
       },
@@ -719,6 +753,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "Where can we borrow books?",
         question: "Where can you borrow storybooks and reference books for free?",
         answer: "Library",
+        options: ["Library","Hospital","Police station","Kitchen"],
         acceptedAnswers: ["library", "a library"],
         hint: "A quiet building with tall shelves filled with thousands of books."
       },
@@ -727,6 +762,7 @@ export const CLASS3_STAGE3_BANK = [
         prompt: "What should students do before answering?",
         question: "What should students always do before answering a question?",
         answer: "Read the question carefully",
+        options: ["Read the question carefully","Close the book","Guess immediately","Leave the room"],
         acceptedAnswers: ["read the question carefully", "read carefully", "read the question"],
         hint: "Looking closely at the directions prevents misunderstandings."
       }
@@ -826,6 +862,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Choose the best title: A paragraph about daily reading practice",
         question: "What is the best title for a paragraph discussing daily reading practice?",
         answer: "Benefits of Reading",
+        options: ["Benefits of Reading","How to Draw","Playing in the Park","Cooking Dinner"],
         acceptedAnswers: ["benefits of reading", "the benefits of reading"],
         hint: "A strong title highlights the main subject of books and literacy."
       },
@@ -834,6 +871,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Choose the correct conclusion",
         question: "What is the most logical conclusion regarding skill practice?",
         answer: "Practice helps improve skills.",
+        options: ["Practice helps improve skills.","Practice is never helpful.","Skills cannot be improved.","Reading is not needed."],
         acceptedAnswers: ["practice helps improve skills.", "practice helps improve skills"],
         hint: "Consistent repetition builds mastery and confidence over time."
       },
@@ -842,6 +880,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Identify the cause: The ground was wet because it rained.",
         question: "In the sentence 'The ground was wet because it rained', what was the cause?",
         answer: "Rain",
+        options: ["Rain","Wet ground","The sun","The wind"],
         acceptedAnswers: ["rain", "it rained", "the rain"],
         hint: "The cause is the event that happened first to make the ground damp."
       },
@@ -850,6 +889,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Identify the effect: The ground was wet because it rained.",
         question: "In the sentence 'The ground was wet because it rained', what was the effect?",
         answer: "The ground became wet.",
+        options: ["The ground became wet.","It stopped raining.","The ground flew away.","The plants disappeared."],
         acceptedAnswers: ["the ground became wet.", "the ground became wet", "wet ground", "the ground was wet"],
         hint: "The effect is the result that happened after the rain fell."
       },
@@ -858,6 +898,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Find the odd word: apple / banana / carrot / pencil",
         question: "Which word does not belong: apple, banana, carrot, pencil?",
         answer: "pencil",
+        options: ["pencil","apple","banana","carrot"],
         acceptedAnswers: ["pencil"],
         hint: "Three of these items are healthy foods to eat, while one is a writing tool."
       },
@@ -866,6 +907,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Find the word that does not belong: teacher / doctor / school / nurse",
         question: "Which word does not belong: teacher, doctor, school, nurse?",
         answer: "school",
+        options: ["school","teacher","doctor","nurse"],
         acceptedAnswers: ["school"],
         hint: "Three are professions performed by people, while one is a building."
       },
@@ -874,6 +916,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Complete: First we read, then we ___ the question.",
         question: "Complete the sentence: 'First we read, then we ___ the question.'",
         answer: "answer",
+        options: ["answer","ignore","erase","skip"],
         acceptedAnswers: ["answer"],
         hint: "After understanding what is asked, you provide your response."
       },
@@ -882,6 +925,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Complete: The student checked the answer ___ submitting it.",
         question: "Complete the sentence: 'The student checked the answer ___ submitting it.'",
         answer: "before",
+        options: ["before","after","never","without"],
         acceptedAnswers: ["before"],
         hint: "You review your work in advance to catch mistakes prior to hand-in."
       },
@@ -890,6 +934,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Choose the sensible sentence",
         question: "Choose the sentence that makes sense:",
         answer: "The students completed their project carefully.",
+        options: ["The students completed their project carefully.","The project completed the students quickly.","The students ate their project book for lunch."],
         acceptedAnswers: ["the students completed their project carefully.", "the students completed their project carefully", "students completed their project carefully"],
         hint: "Hardworking learners put thoughtful effort into finishing assignments."
       }
@@ -906,6 +951,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Which sentence best explains careful reading?",
         question: "Which sentence best explains the benefit of careful reading?",
         answer: "It helps us notice important details.",
+        options: ["It helps us notice important details.","It allows us to finish without looking.","It lets us skip long words.","It makes reading unnecessary."],
         acceptedAnswers: ["it helps us notice important details.", "it helps us notice important details"],
         hint: "Focusing on each sentence allows you to comprehend key facts."
       },
@@ -914,6 +960,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Why should we check our answers?",
         question: "Why is it important to review and check your answers?",
         answer: "To find and correct mistakes.",
+        options: ["To find and correct mistakes.","To waste time.","To change all answers.","To erase everything."],
         acceptedAnswers: ["to find and correct mistakes.", "to find and correct mistakes"],
         hint: "Rereading gives you an opportunity to spot and fix accidental errors."
       },
@@ -922,6 +969,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "What is the main idea of a paragraph?",
         question: "What is the definition of the 'main idea' of a paragraph?",
         answer: "The most important point.",
+        options: ["The most important point.","The longest word in the text.","The final punctuation mark.","A random detail."],
         acceptedAnswers: ["the most important point.", "the most important point"],
         hint: "The central message or primary thought the author wants to convey."
       },
@@ -930,6 +978,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Why is punctuation important?",
         question: "Why do we use punctuation marks like periods and commas?",
         answer: "It helps make meaning clear.",
+        options: ["It helps make meaning clear.","It makes text harder to read.","It is only used for decoration.","It replaces words."],
         acceptedAnswers: ["it helps make meaning clear.", "it helps make meaning clear"],
         hint: "Punctuation indicates pauses, stops, and organizes sentence thoughts."
       },
@@ -938,6 +987,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "What should you do if a word is unfamiliar?",
         question: "What should you do when you encounter an unfamiliar word in a story?",
         answer: "Look at the surrounding words/context.",
+        options: ["Look at the surrounding words/context.","Skip the entire page.","Stop reading immediately.","Ignore the story."],
         acceptedAnswers: ["look at the surrounding words/context.", "look at the surrounding words", "use context clues"],
         hint: "Neighboring sentences provide helpful clues about meaning."
       },
@@ -946,6 +996,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Why is practice useful?",
         question: "Why is consistent practice beneficial when learning a skill?",
         answer: "It helps improve skills.",
+        options: ["It helps improve skills.","It causes confusion.","It makes things harder permanently.","It deletes knowledge."],
         acceptedAnswers: ["it helps improve skills.", "it helps improve skills"],
         hint: "Regular practice strengthens neural memory and accuracy."
       },
@@ -954,6 +1005,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "What does “compare” mean?",
         question: "What does the reading strategy word 'compare' mean?",
         answer: "Look for similarities and differences.",
+        options: ["Look for similarities and differences.","Count the letters in a word.","Read as fast as possible.","Write backwards."],
         acceptedAnswers: ["look for similarities and differences.", "look for similarities and differences"],
         hint: "Evaluating two items to see how they are alike and how they differ."
       },
@@ -962,6 +1014,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "What does “sequence” mean?",
         question: "What does the word 'sequence' mean in reading comprehension?",
         answer: "The order in which things happen.",
+        options: ["The order in which things happen.","A random list of ideas.","The title of a book.","The author's name."],
         acceptedAnswers: ["the order in which things happen.", "the order in which things happen"],
         hint: "The chronological arrangement from beginning to middle to end."
       },
@@ -970,6 +1023,7 @@ export const CLASS4_STAGE3_BANK = [
         prompt: "Why should instructions be read carefully?",
         question: "Why should you read instructions carefully before starting an activity?",
         answer: "So the task is completed correctly.",
+        options: ["So the task is completed correctly.","To finish without understanding.","Because instructions are unimportant.","To confuse yourself."],
         acceptedAnswers: ["so the task is completed correctly.", "so the task is completed correctly"],
         hint: "Clear directions ensure you know each required step."
       }
@@ -1069,6 +1123,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Cause: The student practiced every day, so her reading improved.",
         question: "In 'The student practiced every day, so her reading improved', identify the cause:",
         answer: "Daily practice",
+        options: ["Daily practice","Reading improved","Watching television","Skipping class"],
         acceptedAnswers: ["daily practice", "practiced every day", "practice"],
         hint: "The cause is the action that brought about the positive result."
       },
@@ -1077,6 +1132,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Effect: The student practiced every day, so her reading improved.",
         question: "In 'The student practiced every day, so her reading improved', identify the effect:",
         answer: "Reading improved",
+        options: ["Reading improved","Daily practice","Rain fell","School closed"],
         acceptedAnswers: ["reading improved", "her reading improved"],
         hint: "The effect is the successful outcome resulting from daily effort."
       },
@@ -1085,6 +1141,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Best title for a passage about checking work",
         question: "What is the best title for a passage explaining why reviewing schoolwork matters?",
         answer: "Why Checking Your Work Matters",
+        options: ["Why Checking Your Work Matters","How to Draw Animals","The Rainy Afternoon","A Trip to the Market"],
         acceptedAnswers: ["why checking your work matters", "checking your work"],
         hint: "A title should accurately summarize the main theme of reviewing work."
       },
@@ -1093,6 +1150,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Best conclusion",
         question: "What is the most accurate conclusion about reviewing your answers?",
         answer: "Careful checking can reduce mistakes.",
+        options: ["Careful checking can reduce mistakes.","Mistakes cannot be fixed.","Never check your work.","Rushing always produces the best score."],
         acceptedAnswers: ["careful checking can reduce mistakes.", "careful checking can reduce mistakes"],
         hint: "Taking time to double-check catches accidental oversights."
       },
@@ -1101,15 +1159,16 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Which statement is an opinion?",
         question: "Which of the following statements represents an opinion rather than a proven fact?",
         answer: "Reading is the most enjoyable activity.",
+        options: ["Reading is the most enjoyable activity.","Books contain written information.","Words are made of letters.","Schools have classrooms."],
         acceptedAnswers: ["reading is the most enjoyable activity.", "reading is the most enjoyable activity"],
         hint: "An opinion describes a personal preference or feeling that varies by person."
       },
       {
         id: "c5-s3-l2-q6",
-        prompt: "Which statement is a fact?",
-        question: "Which of the following statements is an objective, verifiable fact?",
-        answer: "Books contain written information.",
-        acceptedAnswers: ["books contain written information.", "books contain written information"],
+        prompt: "Fact verification: true or false",
+        question: "Is it true or false that books contain written information?",
+        answer: "true",
+        acceptedAnswers: ["true", "True", "TRUE"],
         hint: "A fact can be proven objectively true for all instances."
       },
       {
@@ -1117,6 +1176,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What should come first?",
         question: "When taking a quiz, which step should you perform first?",
         answer: "Read the instructions.",
+        options: ["Read the instructions.","Submit the paper.","Pack the bag to go home.","Guess the conclusion."],
         acceptedAnswers: ["read the instructions.", "read the instructions", "read instructions"],
         hint: "Always understand the rules and directions before attempting questions."
       },
@@ -1125,6 +1185,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What should come next?",
         question: "After reading instructions, what should you do next?",
         answer: "Complete the task.",
+        options: ["Complete the task.","Erase the paper.","Sleep before reading.","Leave early."],
         acceptedAnswers: ["complete the task.", "complete the task"],
         hint: "Follow the steps you just read to carry out the assignment."
       },
@@ -1133,6 +1194,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What should happen last?",
         question: "What is the final step you should take before turning in an assessment?",
         answer: "Check the answer.",
+        options: ["Check the answer.","Start reading the title.","Open the textbook.","Read the question."],
         acceptedAnswers: ["check the answer.", "check the answer", "check answers"],
         hint: "Review your completed responses to ensure accuracy."
       }
@@ -1149,6 +1211,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What is the main idea? Careful reading helps students identify important details and avoid mistakes.",
         question: "What is the central theme of the sentence: 'Careful reading helps students identify important details and avoid mistakes'?",
         answer: "Careful reading improves understanding.",
+        options: ["Careful reading improves understanding.","Reading quickly without looking is best.","Mistakes can never be avoided.","Details in a text are unimportant."],
         acceptedAnswers: ["careful reading improves understanding.", "careful reading improves understanding"],
         hint: "Attentive reading leads to better comprehension and fewer errors."
       },
@@ -1157,6 +1220,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Why should a student reread a difficult sentence?",
         question: "Why is rereading a complex sentence a helpful reading strategy?",
         answer: "To understand it better.",
+        options: ["To understand it better.","To make it more confusing.","To count words.","To forget the topic."],
         acceptedAnswers: ["to understand it better.", "to understand it better", "understand it better"],
         hint: "A second reading clarifies vocabulary and structural meaning."
       },
@@ -1165,6 +1229,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What does “compare” mean?",
         question: "What does the reading analysis term 'compare' mean?",
         answer: "Identify similarities and differences.",
+        options: ["Identify similarities and differences.","Ignore all connections.","Only look at colors.","Spell words aloud."],
         acceptedAnswers: ["identify similarities and differences.", "identify similarities and differences"],
         hint: "Examining two concepts side by side to see how they match and how they differ."
       },
@@ -1173,6 +1238,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What does “infer” mean?",
         question: "What does it mean to 'infer' something from a passage?",
         answer: "Work out something from available clues.",
+        options: ["Work out something from available clues.","State only what is directly visible.","Guess without thinking.","Ignore evidence."],
         acceptedAnswers: ["work out something from available clues.", "work out something from available clues", "use clues"],
         hint: "Drawing logical conclusions based on text evidence rather than explicit statements."
       },
@@ -1181,6 +1247,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Why is context useful when reading an unfamiliar word?",
         question: "How do context clues assist a reader when facing a challenging word?",
         answer: "It can help determine the word's meaning.",
+        options: ["It can help determine the word's meaning.","It makes the font larger.","It replaces the letters with numbers.","It erases the sentence."],
         acceptedAnswers: ["it can help determine the word's meaning.", "it can help determine the word's meaning", "determine meaning"],
         hint: "The surrounding words provide semantic clues that reveal definitions."
       },
@@ -1189,6 +1256,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What is the purpose of punctuation?",
         question: "What is the primary purpose of punctuation marks in written English?",
         answer: "To organize meaning and make sentences clearer.",
+        options: ["To organize meaning and make sentences clearer.","To fill empty space on a page.","To confuse readers.","To change the language."],
         acceptedAnswers: ["to organize meaning and make sentences clearer.", "to organize meaning and make sentences clearer"],
         hint: "Periods, commas, and questions marks structure ideas into coherent thoughts."
       },
@@ -1197,6 +1265,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Why might two sentences that look similar have different meanings?",
         question: "Why might two closely worded sentences express completely different ideas?",
         answer: "A small word, letter, or punctuation mark may differ.",
+        options: ["A small word, letter, or punctuation mark may differ.","Sentences always mean the same thing.","Letters have no connection to meaning.","Words do not affect sentences."],
         acceptedAnswers: ["a small word, letter, or punctuation mark may differ.", "a small word, letter, or punctuation mark may differ"],
         hint: "A subtle shift in word choice or comma placement changes the message."
       },
@@ -1205,6 +1274,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "What should a student do after finding a mistake?",
         question: "What is the most constructive response after noticing an error in your work?",
         answer: "Correct it and check the answer again.",
+        options: ["Correct it and check the answer again.","Ignore it and move on.","Erase all correct answers.","Stop reading forever."],
         acceptedAnswers: ["correct it and check the answer again.", "correct it and check the answer again"],
         hint: "Reflect, edit the answer, and verify that the correction makes sense."
       },
@@ -1213,6 +1283,7 @@ export const CLASS5_STAGE3_BANK = [
         prompt: "Why is attention important in visual recognition tasks?",
         question: "Why is focused attention essential in orthographic and visual perception tasks?",
         answer: "Small differences may change the answer.",
+        options: ["Small differences may change the answer.","All options are always identical.","Visual differences never matter.","Looking carefully does not help."],
         acceptedAnswers: ["small differences may change the answer.", "small differences may change the answer"],
         hint: "Letters like 'b' and 'd' differ by only a small directional orientation."
       }

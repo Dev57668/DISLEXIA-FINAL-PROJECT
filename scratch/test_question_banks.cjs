@@ -96,7 +96,7 @@ async function testBanks() {
         if (!ex.answer) {
           throw new Error(`Stage 3 Class ${c} Level ${lIdx + 1} Q${qIdx + 1} missing answer`);
         }
-        if (!ex.options.includes(ex.answer)) {
+        if (ex.options && !ex.options.includes(ex.answer)) {
           throw new Error(`Stage 3 Class ${c} Level ${lIdx + 1} Q${qIdx + 1} answer "${ex.answer}" not in options [${ex.options.join(', ')}]`);
         }
       });

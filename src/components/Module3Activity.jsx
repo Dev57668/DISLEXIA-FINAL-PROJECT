@@ -34,6 +34,7 @@ export default function Module3Activity({
   const currentExercise = currentLevel?.exercises?.[exerciseIndex] || currentLevel?.exercises?.[0];
 
   const [typedAnswer, setTypedAnswer] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
@@ -44,6 +45,13 @@ export default function Module3Activity({
   const inputRef = useRef(null);
   const hasAwardedXpRef = useRef(false);
   const isAdvancingRef = useRef(false);
+
+  // Check if current exercise has multiple-choice options
+  const isMultipleChoice = Boolean(
+    Array.isArray(currentExercise?.options) &&
+    currentExercise.options.length > 0 &&
+    currentExercise.type !== "written"
+  );
 
   // Total questions calculation
   const totalQuestions = levels.reduce(
@@ -63,6 +71,7 @@ export default function Module3Activity({
   // Auto-focus input and reset state on new question load
   useEffect(() => {
     setTypedAnswer("");
+    setSelectedOption(null);
     setIsCorrect(false);
     setIsWrong(false);
     setFeedbackMessage("");
@@ -72,7 +81,7 @@ export default function Module3Activity({
     hasAwardedXpRef.current = false;
     isAdvancingRef.current = false;
 
-    // Smooth auto-focus for accessibility and keyboard flow
+    // Smooth auto-focus for accessibility and keyboard flow on written questions
     const timer = setTimeout(() => {
       if (inputRef.current) {
         inputRef.current.focus();
@@ -82,13 +91,14 @@ export default function Module3Activity({
     return () => clearTimeout(timer);
   }, [levelIndex, exerciseIndex, currentExercise?.id]);
 
-  // Normalize answers for robust comparison
+  // Normalize answers for robust comparison (handles whitespace, casing, and punctuation)
   const normalizeText = (str) => {
     return String(str || "")
       .trim()
       .toLowerCase()
-      .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")
-      .replace(/\s+/g, " ");
+      .replace(/^[.,/#!$%^&*;:{}=\-_`~()]+|[.,/#!$%^&*;:{}=\-_`~()]+$/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
   };
 
   // Check the learner's typed answer
@@ -142,6 +152,38 @@ export default function Module3Activity({
     }
   }, [currentExercise, isCorrect, typedAnswer, onAwardXp, onRecordPerformance]);
 
+  // Handle choice selection for multiple-choice questions
+  const handleSelectOption = useCallback((option) => {
+    if (!currentExercise || isCorrect || isAdvancingRef.current) return;
+    setSelectedOption(option);
+
+    const cleanOption = normalizeText(option);
+    const rawAccepted = Array.isArray(currentExercise.acceptedAnswers) && currentExercise.acceptedAnswers.length > 0
+      ? currentExercise.acceptedAnswers
+      : [currentExercise.answer];
+
+    const normalizedAccepted = rawAccepted.map(a => normalizeText(a));
+    const matched = option === currentExercise.answer || normalizedAccepted.includes(cleanOption);
+
+    if (matched) {
+      setIsCorrect(true);
+      setIsWrong(false);
+      setFeedbackMessage("Correct! +3 XP");
+      playCorrectChime();
+
+      if (!hasAwardedXpRef.current) {
+        hasAwardedXpRef.current = true;
+        onAwardXp(3);
+        onRecordPerformance("stage3", true, currentExercise, option);
+      }
+    } else {
+      setIsWrong(true);
+      setFeedbackMessage("Not quite right. Try again!");
+      playWrongBuzzer();
+      onRecordPerformance("stage3", false, currentExercise, option);
+    }
+  }, [currentExercise, isCorrect, onAwardXp, onRecordPerformance]);
+
   // Advance to next question or complete module
   const handleAdvance = useCallback(() => {
     if (isAdvancingRef.current) return;
@@ -159,7 +201,19 @@ export default function Module3Activity({
     }
   }, [exerciseIndex, currentLevel, levelIndex, levels, onCompleteModule, onNextQuestion]);
 
-  // Two-state Keyboard shortcut: Enter checks answer -> Enter advances
+  // Global keyboard listener: Enter advances when question is answered correctly
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      if (e.key === "Enter" && isCorrect) {
+        e.preventDefault();
+        handleAdvance();
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, [isCorrect, handleAdvance]);
+
+  // Two-state Keyboard shortcut on input: Enter checks answer -> Enter advances
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -273,131 +327,222 @@ export default function Module3Activity({
               {currentExercise?.question || currentExercise?.prompt}
             </h2>
 
-            {/* TYPED KEYBOARD INPUT ONLY (NO MULTIPLE CHOICE BUTTONS) */}
-            <div
-              className="typed-input-area"
-              style={{
-                marginTop: "24px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "16px",
-                width: "100%"
-              }}
-            >
-              <div style={{ width: "100%", maxWidth: "520px" }}>
-                <label
-                  htmlFor="module3-answer-input"
-                  style={{
-                    display: "block",
-                    fontSize: "0.95rem",
-                    fontWeight: "600",
-                    marginBottom: "8px",
-                    textAlign: "left",
-                    color: "var(--text-muted, #475569)"
-                  }}
-                >
-                  Type your answer:
-                </label>
-                <input
-                  id="module3-answer-input"
-                  ref={inputRef}
-                  type="text"
-                  value={typedAnswer}
-                  onChange={(e) => {
-                    setTypedAnswer(e.target.value);
-                    if (isWrong) setIsWrong(false);
-                  }}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Type your answer here..."
-                  disabled={isCorrect}
-                  aria-label="Type your answer"
-                  autoComplete="off"
-                  autoCapitalize="none"
-                  spellCheck="false"
-                  style={{
-                    width: "100%",
-                    padding: "16px 20px",
-                    fontSize: "1.3rem",
-                    fontWeight: "600",
-                    fontFamily: "var(--sans, inherit)",
-                    borderRadius: "14px",
-                    border: isCorrect
-                      ? "2.5px solid #16a34a"
-                      : isWrong
-                      ? "2.5px solid #ef4444"
-                      : "2px solid #cbd5e1",
-                    background: isCorrect ? "#f0fdf4" : isWrong ? "#fef2f2" : "#ffffff",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-                    textAlign: "center",
-                    letterSpacing: "1px",
-                    outline: "none",
-                    boxSizing: "border-box"
-                  }}
-                />
-              </div>
-
-              {/* ACTION BUTTONS (CHECK ANSWER / NEXT QUESTION) */}
-              <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-                {!isCorrect ? (
-                  <button
-                    type="button"
-                    className="primary-button"
-                    disabled={!typedAnswer.trim()}
-                    onClick={handleCheckAnswer}
-                    style={{
-                      minWidth: "170px",
-                      padding: "12px 24px",
-                      fontSize: "1.05rem",
-                      fontWeight: "700"
-                    }}
-                  >
-                    Check Answer
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="save-button next-button"
-                    onClick={handleAdvance}
-                    style={{
-                      minWidth: "180px",
-                      padding: "12px 28px",
-                      fontSize: "1.05rem",
-                      fontWeight: "700"
-                    }}
-                  >
-                    {isLastQuestionOverall ? "Complete Module 3" : "Next Question →"}
-                  </button>
-                )}
-
-                {isWrong && !isCorrect && (
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    onClick={() => {
-                      setTypedAnswer("");
-                      setIsWrong(false);
-                      setFeedbackMessage("");
-                      if (inputRef.current) inputRef.current.focus();
-                    }}
-                  >
-                    Try Again
-                  </button>
-                )}
-              </div>
-
-              {/* HELPFUL KEYBOARD HINT */}
-              <span
+            {/* INTERACTION AREA: MULTIPLE CHOICE BUTTONS OR TYPED INPUT */}
+            {isMultipleChoice ? (
+              <div
+                className="mc-options-area"
                 style={{
-                  fontSize: "0.82rem",
-                  color: "#64748b",
-                  fontWeight: "500",
-                  marginTop: "-4px"
+                  marginTop: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "16px",
+                  width: "100%"
                 }}
               >
-                Press <kbd style={{ padding: "2px 6px", background: "#e2e8f0", borderRadius: "4px", fontWeight: "700" }}>Enter ↵</kbd> to {isCorrect ? "continue" : "check"}
-              </span>
-            </div>
+                {/* ANSWER OPTIONS GRID */}
+                <div
+                  className="answer-grid"
+                  style={{
+                    width: "100%",
+                    maxWidth: "760px",
+                    margin: "0 auto"
+                  }}
+                >
+                  {currentExercise.options.map((option, idx) => {
+                    const isSelected = selectedOption === option;
+                    const isThisOptionCorrect =
+                      option === currentExercise.answer ||
+                      normalizeText(option) === normalizeText(currentExercise.answer);
+
+                    let buttonClass = "answer-button";
+                    if (isSelected) {
+                      buttonClass += isCorrect ? " correct" : " wrong";
+                    } else if (isCorrect && isThisOptionCorrect) {
+                      buttonClass += " correct";
+                    }
+
+                    return (
+                      <button
+                        key={`${idx}-${option}`}
+                        type="button"
+                        className={buttonClass}
+                        disabled={isCorrect}
+                        onClick={() => handleSelectOption(option)}
+                      >
+                        {option}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* ADVANCE BUTTON FOR MULTIPLE CHOICE */}
+                {isCorrect && (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "12px",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      justifyContent: "center",
+                      marginTop: "12px"
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="save-button next-button"
+                      onClick={handleAdvance}
+                      style={{
+                        minWidth: "180px",
+                        padding: "12px 28px",
+                        fontSize: "1.05rem",
+                        fontWeight: "700"
+                      }}
+                    >
+                      {isLastQuestionOverall ? "Complete Module 3" : "Next Question →"}
+                    </button>
+                  </div>
+                )}
+
+                {isCorrect && (
+                  <span
+                    style={{
+                      fontSize: "0.82rem",
+                      color: "#64748b",
+                      fontWeight: "500",
+                      marginTop: "2px"
+                    }}
+                  >
+                    Press <kbd style={{ padding: "2px 6px", background: "#e2e8f0", borderRadius: "4px", fontWeight: "700" }}>Enter ↵</kbd> or tap Next Question
+                  </span>
+                )}
+              </div>
+            ) : (
+              <div
+                className="typed-input-area"
+                style={{
+                  marginTop: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "16px",
+                  width: "100%"
+                }}
+              >
+                <div style={{ width: "100%", maxWidth: "520px" }}>
+                  <label
+                    htmlFor="module3-answer-input"
+                    style={{
+                      display: "block",
+                      fontSize: "0.95rem",
+                      fontWeight: "600",
+                      marginBottom: "8px",
+                      textAlign: "left",
+                      color: "var(--text-muted, #475569)"
+                    }}
+                  >
+                    Type your answer:
+                  </label>
+                  <input
+                    id="module3-answer-input"
+                    ref={inputRef}
+                    type="text"
+                    value={typedAnswer}
+                    onChange={(e) => {
+                      setTypedAnswer(e.target.value);
+                      if (isWrong) setIsWrong(false);
+                    }}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Type your answer here..."
+                    disabled={isCorrect}
+                    aria-label="Type your answer"
+                    autoComplete="off"
+                    autoCapitalize="none"
+                    spellCheck="false"
+                    style={{
+                      width: "100%",
+                      padding: "16px 20px",
+                      fontSize: "1.3rem",
+                      fontWeight: "600",
+                      fontFamily: "var(--sans, inherit)",
+                      borderRadius: "14px",
+                      border: isCorrect
+                        ? "2.5px solid #16a34a"
+                        : isWrong
+                        ? "2.5px solid #ef4444"
+                        : "2px solid #cbd5e1",
+                      background: isCorrect ? "#f0fdf4" : isWrong ? "#fef2f2" : "#ffffff",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                      textAlign: "center",
+                      letterSpacing: "1px",
+                      outline: "none",
+                      boxSizing: "border-box"
+                    }}
+                  />
+                </div>
+
+                {/* ACTION BUTTONS (CHECK ANSWER / NEXT QUESTION) */}
+                <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+                  {!isCorrect ? (
+                    <button
+                      type="button"
+                      className="primary-button"
+                      disabled={!typedAnswer.trim()}
+                      onClick={handleCheckAnswer}
+                      style={{
+                        minWidth: "170px",
+                        padding: "12px 24px",
+                        fontSize: "1.05rem",
+                        fontWeight: "700"
+                      }}
+                    >
+                      Check Answer
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="save-button next-button"
+                      onClick={handleAdvance}
+                      style={{
+                        minWidth: "180px",
+                        padding: "12px 28px",
+                        fontSize: "1.05rem",
+                        fontWeight: "700"
+                      }}
+                    >
+                      {isLastQuestionOverall ? "Complete Module 3" : "Next Question →"}
+                    </button>
+                  )}
+
+                  {isWrong && !isCorrect && (
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      onClick={() => {
+                        setTypedAnswer("");
+                        setIsWrong(false);
+                        setFeedbackMessage("");
+                        if (inputRef.current) inputRef.current.focus();
+                      }}
+                    >
+                      Try Again
+                    </button>
+                  )}
+                </div>
+
+                {/* HELPFUL KEYBOARD HINT */}
+                <span
+                  style={{
+                    fontSize: "0.82rem",
+                    color: "#64748b",
+                    fontWeight: "500",
+                    marginTop: "-4px"
+                  }}
+                >
+                  Press <kbd style={{ padding: "2px 6px", background: "#e2e8f0", borderRadius: "4px", fontWeight: "700" }}>Enter ↵</kbd> to {isCorrect ? "continue" : "check"}
+                </span>
+              </div>
+            )}
 
             {/* FEEDBACK BANNERS */}
             {isCorrect && (

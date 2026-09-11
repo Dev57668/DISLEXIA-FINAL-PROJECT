@@ -106,7 +106,7 @@ export default function QuestTrailMap({
                 </div>
                 <div className="node-indexing">
                   <span className="station-pill" style={{ color: mod.color, borderColor: mod.color }}>
-                    GLADE {mod.number}
+                    MODULE {mod.number}
                   </span>
                   <div className="station-stars">
                     {Array.from({ length: 3 }).map((_, sIdx) => (

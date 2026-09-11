@@ -2202,6 +2202,17 @@ a:focus-visible,
   }
 }
 
+/* Completed module button styling */
+.module-btn-completed {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
+  border-color: #166534 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35) !important;
+  font-weight: 700 !important;
+}
 
-
-
+.module-btn-completed:hover {
+  background: linear-gradient(135deg, #15803d 0%, #166534 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.45) !important;
+}

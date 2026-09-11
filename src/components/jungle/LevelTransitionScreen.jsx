@@ -209,7 +209,7 @@ export default function LevelTransitionScreen({
           {/* Glade Number Tag */}
           <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: glade.bgTint, border: `2px solid ${glade.color}`, borderRadius: "10px 12px 10px 12px", padding: "4px 14px", marginBottom: "16px" }}>
             <span style={{ color: glade.color, fontWeight: "900", fontSize: "0.85rem", letterSpacing: "1px" }}>
-              GLADE {glade.number} • EXPEDITION WAYPOINT
+              MODULE {glade.number} • EXPEDITION WAYPOINT
             </span>
           </div>
 

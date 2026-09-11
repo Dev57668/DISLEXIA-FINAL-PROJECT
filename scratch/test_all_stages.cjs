@@ -98,11 +98,13 @@ for (let c = 1; c <= 5; c++) {
       lvl.exercises.forEach((ex, idx) => {
         if (ex.word && ex.distractors) {
           // Word builder format
-        } else if (ex.question && ex.options && ex.answer) {
+        } else if (ex.options && ex.answer) {
           // Multiple choice format
           if (!ex.options.includes(ex.answer)) {
             errors.push(`Stage 3 Class ${c} level ${lvl.id} ex ${idx} answer '${ex.answer}' not in options`);
           }
+        } else if ((ex.question || ex.prompt) && ex.answer) {
+          // Written response format
         } else {
           errors.push(`Stage 3 Class ${c} level ${lvl.id} ex ${idx} malformed: ${JSON.stringify(ex)}`);
         }

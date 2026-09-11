@@ -444,6 +444,29 @@ const createShuffledStage2 = (classNumber = 1) => {
   }));
 };
 
+const getStage2LevelsForClass = (classNumber = 1) => {
+  const classKey = String(getNormalizedClassNumber(classNumber));
+
+  const sourceLevels =
+    classKey === "1"
+      ? CLASS1_STAGE2_BANK
+      : classKey === "2"
+        ? CLASS2_STAGE2_BANK
+        : classKey === "3"
+          ? CLASS3_STAGE2_BANK
+          : classKey === "4"
+            ? CLASS4_STAGE2_BANK
+            : CLASS5_STAGE2_BANK;
+
+  return sourceLevels.map((level) => ({
+    ...level,
+    exercises: level.exercises.map((ex, idx) => ({
+      ...ex,
+      id: ex.id || `c${classKey}-s2-l${level.id}-q${idx + 1}`,
+    })),
+  }));
+};
+
 /* =========================================================
    NORMALISE SPEECH FOR COMPARISON
    ========================================================= */
@@ -855,30 +878,33 @@ const DYSLEXIA_RECOMMENDATIONS = {
     videos: [
       {
         id: "v1",
-        title: "How to Remember the Difference Between b and d",
-        channel: "Nessy Learning",
+        videoId: "YrZXK8HNjoY",
+        title: "The Difference Between b and d",
+        channel: "Jack Hartmann Kids Music Channel",
         duration: "3 mins",
-        description: "The famous 'bed' hand trick and animated story that permanently fixes b and d confusion for dyslexic kids.",
-        url: "https://www.youtube.com/watch?v=WP1blvh1Z2Q",
+        description: "The famous 'bed' hand trick and animated song that physically anchors b and d orientation for dyslexic kids.",
+        url: "https://www.youtube.com/watch?v=YrZXK8HNjoY",
         thumbnailColor: "#1e40af"
       },
       {
         id: "v2",
-        title: "What is Dyslexia? (Animated Explanation)",
-        channel: "TED-Ed",
-        duration: "4 mins",
-        description: "A fun, inspiring animation showing how dyslexic brains are uniquely wired for creativity and spatial gifts.",
-        url: "https://www.youtube.com/watch?v=zafiGBrFkRM",
-        thumbnailColor: "#b91c1c"
+        videoId: "11r7CFlK2sc",
+        title: "See Dyslexia Differently",
+        channel: "British Dyslexia Association",
+        duration: "3 mins",
+        description: "An inspiring school animation showing how dyslexic minds perceive letters and 3D space with vivid creativity.",
+        url: "https://www.youtube.com/watch?v=11r7CFlK2sc",
+        thumbnailColor: "#047857"
       },
       {
         id: "v3",
-        title: "Visual Memory & Spelling Strategies for Dyslexia",
-        channel: "BBC Teach",
-        duration: "5 mins",
-        description: "Animated mnemonic strategies to visualize word shapes and overcome letter flipping.",
-        url: "https://www.youtube.com/watch?v=11r79zGwpQ4",
-        thumbnailColor: "#047857"
+        videoId: "Sk5ZDUJ_fPE",
+        title: "How to Fix B & D Letter Mix Up",
+        channel: "TwoFish Kids / Ask A Kid",
+        duration: "4 mins",
+        description: "Fun, actionable multisensory letter reversal activities and memory anchors created for visual learners.",
+        url: "https://www.youtube.com/watch?v=Sk5ZDUJ_fPE",
+        thumbnailColor: "#b91c1c"
       }
     ],
     exercises: [
@@ -944,29 +970,32 @@ const DYSLEXIA_RECOMMENDATIONS = {
     videos: [
       {
         id: "v4",
-        title: "Phonics Blending Made Easy - Letters & Word Magic",
-        channel: "Alphablocks Official (BBC)",
-        duration: "5 mins",
+        videoId: "5TilX5Lgn0k",
+        title: "Alphablocks - Letter Blends & Phonics",
+        channel: "Blocks Universe / Alphablocks",
+        duration: "4 mins",
         description: "Fun animated blocks hold hands to teach how phonemes combine into words step-by-step.",
-        url: "https://www.youtube.com/watch?v=F3G8a9tF684",
+        url: "https://www.youtube.com/watch?v=5TilX5Lgn0k",
         thumbnailColor: "#7c3aed"
       },
       {
         id: "v5",
+        videoId: "c3oA4wfUBak",
         title: "Hairy Phonics - Magic E & Long Vowel Sounds",
         channel: "Nessy Learning",
         duration: "4 mins",
-        description: "Hairy monsters show how the silent 'e' at the end makes the vowel say its own name.",
-        url: "https://www.youtube.com/watch?v=b4O5u_V70oA",
+        description: "Hairy monsters show how the silent 'e' gives its power to vowels to make them say their own name.",
+        url: "https://www.youtube.com/watch?v=c3oA4wfUBak",
         thumbnailColor: "#c026d3"
       },
       {
         id: "v6",
-        title: "Rhyming Words for Kids - Fun Phonics Animation",
-        channel: "Kids Academy",
-        duration: "4 mins",
-        description: "Animated cartoon lesson showing word families (cat/hat/bat, tree/bee) with audio cues.",
-        url: "https://www.youtube.com/watch?v=cSPmAByNmR8",
+        videoId: "4PW3_LErVZk",
+        title: "The Rhyming Words Song - Word Families",
+        channel: "Scratch Garden",
+        duration: "3 mins",
+        description: "Catchy animated phonics song showing word families (cat/hat/bat, tree/bee) with audio cues.",
+        url: "https://www.youtube.com/watch?v=4PW3_LErVZk",
         thumbnailColor: "#ea580c"
       }
     ],
@@ -1032,29 +1061,32 @@ const DYSLEXIA_RECOMMENDATIONS = {
     videos: [
       {
         id: "v7",
-        title: "How Addition & Grouping Works Step-by-Step",
-        channel: "Numberblocks Official",
-        duration: "5 mins",
-        description: "Living number blocks stack and combine visually, making quantity relationships instantly clear.",
-        url: "https://www.youtube.com/watch?v=t89r5F1i378",
+        videoId: "IezO567SKNM",
+        title: "What Is Dyscalculia? (Math Learning Differences)",
+        channel: "Understood",
+        duration: "4 mins",
+        description: "A clear, reassuring visual guide explaining how math dyslexia impacts number sense and how multi-sensory tools help.",
+        url: "https://www.youtube.com/watch?v=IezO567SKNM",
         thumbnailColor: "#b45309"
       },
       {
         id: "v8",
-        title: "Basic Addition & Subtraction Visualized",
-        channel: "Math Antics",
-        duration: "6 mins",
-        description: "Humorous, clear animation demonstrating place value columns and regrouping with ease.",
-        url: "https://www.youtube.com/watch?v=mAvuom42NyY",
+        videoId: "45F_MKhGeHk",
+        title: "Learning Math With Numberblocks! Addition Song",
+        channel: "Numberblocks / Blocks Universe",
+        duration: "5 mins",
+        description: "Living number blocks stack and combine visually, making quantity relationships and addition tangible.",
+        url: "https://www.youtube.com/watch?v=45F_MKhGeHk",
         thumbnailColor: "#0284c7"
       },
       {
         id: "v9",
-        title: "Skip Counting & Number Line Patterns",
-        channel: "Khan Academy Kids",
-        duration: "4 mins",
-        description: "Friendly animal animations demonstrating jumps of 2s, 5s, and 10s on a colorful number line.",
-        url: "https://www.youtube.com/watch?v=V96_Pa4Bw5A",
+        videoId: "GvTcpfSnOMQ",
+        title: "The Counting by Twos Song - Number Line Patterns",
+        channel: "Scratch Garden",
+        duration: "3 mins",
+        description: "Upbeat song and colorful animations demonstrating jumps of 2s on a number line to build mental arithmetic agility.",
+        url: "https://www.youtube.com/watch?v=GvTcpfSnOMQ",
         thumbnailColor: "#15803d"
       }
     ],
@@ -1120,29 +1152,32 @@ const DYSLEXIA_RECOMMENDATIONS = {
     videos: [
       {
         id: "v10",
-        title: "Shapes Song & 3D Solids Adventure",
-        channel: "StoryBots (Netflix Jr)",
-        duration: "3 mins",
-        description: "Catchy animated musical journey exploring cubes, spheres, cones, and cylinders in nature.",
-        url: "https://www.youtube.com/watch?v=8bO_iA-R-Xg",
+        videoId: "zPZegz690Mg",
+        title: "3D Shapes Song for Kids | Learn About 3D Shapes",
+        channel: "Jack Hartmann Kids Music Channel",
+        duration: "4 mins",
+        description: "Catchy animated musical adventure exploring spheres, cylinders, cubes, and cones in everyday life.",
+        url: "https://www.youtube.com/watch?v=zPZegz690Mg",
         thumbnailColor: "#059669"
       },
       {
         id: "v11",
-        title: "2D & 3D Shapes Mystery - Faces, Edges & Corners",
-        channel: "Scratch Garden",
+        videoId: "guNdJ5MtX1A",
+        title: "3D Shapes Song | Shapes for Kids",
+        channel: "The Singing Walrus",
         duration: "4 mins",
-        description: "Funny cartoon characters demonstrate the difference between flat shapes and 3D solids.",
+        description: "Funny cartoon characters explore 3D solid shapes and how they relate to everyday items.",
         url: "https://www.youtube.com/watch?v=guNdJ5MtX1A",
         thumbnailColor: "#d97706"
       },
       {
         id: "v12",
-        title: "Why Are Wheels Round & Honeycombs Hexagonal?",
-        channel: "SciShow Kids",
-        duration: "5 mins",
-        description: "Engaging science animation showing why geometry works the way it does in nature.",
-        url: "https://www.youtube.com/watch?v=68M2q0L6W3U",
+        videoId: "24Uv8Cl5hvI",
+        title: "Shapes, Sides and Vertices | Geometry Essentials",
+        channel: "Jack Hartmann Kids Music Channel",
+        duration: "3 mins",
+        description: "Hands-on guide demonstrating how to count sides, corners, and vertices without confusing 2D and 3D properties.",
+        url: "https://www.youtube.com/watch?v=24Uv8Cl5hvI",
         thumbnailColor: "#2563eb"
       }
     ],
@@ -1210,21 +1245,33 @@ const DYSLEXIA_RECOMMENDATIONS = {
     videos: [
       {
         id: "v13",
-        title: "How to Master Reading Comprehension & Fluency",
-        channel: "BBC Bitesize",
+        videoId: "65psPXWzNic",
+        title: "What Is Dyslexia? | The Dr. Binocs Show",
+        channel: "Peekaboo Kidz",
         duration: "4 mins",
-        description: "Tips and tricks for young readers to boost comprehension and read smoothly.",
-        url: "https://www.youtube.com/watch?v=11r79zGwpQ4",
+        description: "Dr. Binocs explains dyslexia in a fun, positive, kid-friendly way, highlighting unique cognitive strengths.",
+        url: "https://www.youtube.com/watch?v=65psPXWzNic",
         thumbnailColor: "#ca8a04"
       },
       {
         id: "v14",
-        title: "The Superpowers of the Dyslexic Mind",
-        channel: "Made By Dyslexia",
+        videoId: "zafiGBrFkRM",
+        title: "What is Dyslexia? (Animated Explanation)",
+        channel: "TED-Ed",
         duration: "4 mins",
-        description: "Inspiring animation featuring astronauts, architects, and storytellers with dyslexic thinking.",
+        description: "A world-renowned animation showing how dyslexic brains are uniquely wired for creativity and big-picture problem solving.",
         url: "https://www.youtube.com/watch?v=zafiGBrFkRM",
         thumbnailColor: "#2563eb"
+      },
+      {
+        id: "v15",
+        videoId: "NqpbTN3diUc",
+        title: "Reading Comprehension & Clue Finding Strategies",
+        channel: "Learn Bright",
+        duration: "5 mins",
+        description: "Core strategies for young readers to boost comprehension, find clues in the text, and read with confidence.",
+        url: "https://www.youtube.com/watch?v=NqpbTN3diUc",
+        thumbnailColor: "#059669"
       }
     ],
     exercises: [
@@ -1320,6 +1367,7 @@ const StageComprehensiveAnalysis = ({
 }) => {
   const analysis = analyzeStagePerformance(stageKey, performance, totalQuestions, studentClass);
   const { profile, accuracy, wrongCount, hintsCount, firstTrySuccess, severity } = analysis;
+  const [activeVideoModal, setActiveVideoModal] = useState(null);
 
   const handleReadAnalysis = () => {
     if ("speechSynthesis" in window) {
@@ -1452,35 +1500,186 @@ const StageComprehensiveAnalysis = ({
           Recommended Visual & Video Lessons
         </h3>
         <p className="section-description">
-          Curated animated lessons designed specifically for children with this cognitive profile:
+          Curated animated lessons designed specifically for children with this cognitive profile (click card to play):
         </p>
         <div className="video-recommendation-grid">
           {profile.videos.map((vid) => (
-            <div key={vid.id} className="video-card">
+            <div
+              key={vid.id}
+              className="video-card"
+              style={{ cursor: "pointer", transition: "transform 0.18s ease, box-shadow 0.18s ease" }}
+              onClick={() => setActiveVideoModal(vid)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActiveVideoModal(vid);
+                }
+              }}
+            >
               <div
                 className="video-thumbnail-placeholder"
-                style={{ background: vid.thumbnailColor }}
+                style={{ background: vid.thumbnailColor, position: "relative", overflow: "hidden" }}
               >
-                <span className="video-play-icon">▶</span>
-                <span className="video-duration-pill">{vid.duration}</span>
+                <img
+                  src={`https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`}
+                  alt={vid.title}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover"
+                  }}
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.style.display = "none"; }}
+                />
+                <div style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to top, rgba(15,23,42,0.65) 0%, rgba(15,23,42,0.15) 60%, rgba(0,0,0,0) 100%)",
+                  pointerEvents: "none"
+                }} />
+                <span className="video-play-icon" style={{ position: "relative", zIndex: 2 }}>▶</span>
+                <span className="video-duration-pill" style={{ position: "relative", zIndex: 2 }}>{vid.duration}</span>
               </div>
               <div className="video-info">
                 <div className="video-channel-pill">{vid.channel}</div>
                 <h4 className="video-title">{vid.title}</h4>
                 <p className="video-desc">{vid.description}</p>
-                <a
-                  href={vid.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="video-watch-link"
-                >
-                  Watch Lesson on YouTube
-                </a>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center", marginTop: "8px", flexWrap: "wrap" }}>
+                  <span className="video-watch-link" style={{ pointerEvents: "none", color: "#2563eb", fontWeight: "700" }}>
+                    ▶ Play Video Lesson
+                  </span>
+                  <a
+                    href={vid.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: "0.82rem", color: "#64748b", textDecoration: "underline" }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Open on YouTube ↗
+                  </a>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* EMBEDDED VIDEO MODAL PLAYER */}
+      {activeVideoModal && (
+        <div
+          className="video-modal-backdrop"
+          onClick={() => setActiveVideoModal(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(15, 23, 42, 0.8)",
+            backdropFilter: "blur(6px)",
+            zIndex: 99999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px"
+          }}
+        >
+          <div
+            className="video-modal-dialog"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "#ffffff",
+              borderRadius: "16px",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35)",
+              maxWidth: "760px",
+              width: "100%",
+              overflow: "hidden",
+              border: "2px solid #e2e8f0"
+            }}
+          >
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "16px 20px",
+              background: "#f8fafc",
+              borderBottom: "1px solid #e2e8f0"
+            }}>
+              <div>
+                <span className="video-channel-pill" style={{ marginBottom: "4px" }}>
+                  {activeVideoModal.channel}
+                </span>
+                <h4 style={{ margin: "4px 0 0", color: "#0f172a", fontSize: "1.1rem" }}>
+                  {activeVideoModal.title}
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveVideoModal(null)}
+                style={{
+                  background: "#e2e8f0",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "36px",
+                  height: "36px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                  color: "#334155"
+                }}
+                aria-label="Close video player"
+              >
+                ✕
+              </button>
+            </div>
+            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", background: "#000000" }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${activeVideoModal.videoId || (activeVideoModal.url.match(/v=([^&]+)/) ? activeVideoModal.url.match(/v=([^&]+)/)[1] : "")}?autoplay=1&rel=0`}
+                title={activeVideoModal.title}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: 0
+                }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div style={{
+              padding: "12px 20px",
+              background: "#f8fafc",
+              borderTop: "1px solid #e2e8f0",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center"
+            }}>
+              <span style={{ fontSize: "0.85rem", color: "#64748b" }}>
+                Educational Dyslexia Resource • DyslexiaQuest
+              </span>
+              <a
+                href={activeVideoModal.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#2563eb",
+                  fontWeight: "700",
+                  fontSize: "0.88rem",
+                  textDecoration: "none"
+                }}
+              >
+                Watch on YouTube ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 5. MULTI-SENSORY READING & KINESTHETIC EXERCISES */}
       <div className="diagnostic-section">
@@ -2077,20 +2276,11 @@ function App() {
     5: "very-hard",
   }[selectedClass];
 
-  const [schoolName, setSchoolName] =
-    useState("");
-
-  const [parentName, setParentName] =
-    useState("");
-
-  const [parentPhone, setParentPhone] =
-    useState("");
-
-  const [parentEmail, setParentEmail] =
-    useState("");
-
-  const [studentPhoto, setStudentPhoto] =
-    useState("");
+  const [schoolName, setSchoolName] = useState(() => initialActiveStudent?.schoolName || "");
+  const [parentName, setParentName] = useState(() => initialActiveStudent?.parentName || "");
+  const [parentPhone, setParentPhone] = useState(() => initialActiveStudent?.parentPhone || "");
+  const [parentEmail, setParentEmail] = useState(() => initialActiveStudent?.parentEmail || "");
+  const [studentPhoto, setStudentPhoto] = useState(() => initialActiveStudent?.studentPhoto || "");
 
   const [saveMessage, setSaveMessage] =
     useState("");
@@ -2208,6 +2398,30 @@ function App() {
     savedAt: null,
   });
 
+  const createEmptyStage2ClassProgress = () => ({
+    completedQuestionIds: [],
+    correctQuestionIds: [],
+    completedQuestions: 0,
+    completedLevels: [],
+    xp: 10,
+    totalQuestions: 27,
+    stageCompleted: false,
+    lastAnsweredQuestionId: "",
+    savedAt: null,
+  });
+
+  const createEmptyStage3ClassProgress = () => ({
+    completedQuestionIds: [],
+    correctQuestionIds: [],
+    completedQuestions: 0,
+    completedLevels: [],
+    xp: 10,
+    totalQuestions: 27,
+    stageCompleted: false,
+    lastAnsweredQuestionId: "",
+    savedAt: null,
+  });
+
   const createEmptyStage4ClassProgress = () => ({
     completedQuestionIds: [],
     correctQuestionIds: [],
@@ -2251,6 +2465,24 @@ function App() {
         5: createEmptyClassProgress(),
       },
     },
+    stage2: {
+      classes: {
+        1: createEmptyStage2ClassProgress(),
+        2: createEmptyStage2ClassProgress(),
+        3: createEmptyStage2ClassProgress(),
+        4: createEmptyStage2ClassProgress(),
+        5: createEmptyStage2ClassProgress(),
+      },
+    },
+    stage3: {
+      classes: {
+        1: createEmptyStage3ClassProgress(),
+        2: createEmptyStage3ClassProgress(),
+        3: createEmptyStage3ClassProgress(),
+        4: createEmptyStage3ClassProgress(),
+        5: createEmptyStage3ClassProgress(),
+      },
+    },
     stage4: {
       classes: {
         1: createEmptyStage4ClassProgress(),
@@ -2292,17 +2524,34 @@ function App() {
 
       // Keep the new class-wise format.
       if (parsed?.stage1?.classes) {
+        if (!parsed.stage2?.classes) {
+          parsed.stage2 = {
+            classes: {
+              1: createEmptyStage2ClassProgress(),
+              2: createEmptyStage2ClassProgress(),
+              3: createEmptyStage2ClassProgress(),
+              4: createEmptyStage2ClassProgress(),
+              5: createEmptyStage2ClassProgress(),
+            }
+          };
+        }
+        if (!parsed.stage3?.classes) {
+          parsed.stage3 = {
+            classes: {
+              1: createEmptyStage3ClassProgress(),
+              2: createEmptyStage3ClassProgress(),
+              3: createEmptyStage3ClassProgress(),
+              4: createEmptyStage3ClassProgress(),
+              5: createEmptyStage3ClassProgress(),
+            }
+          };
+        }
         return parsed;
       }
 
       // Old progress format is intentionally not mixed with the new
       // class-wise question IDs because the old Stage 1 had 48 questions.
       const freshProgress = createEmptyLearningProgress();
-
-      // Preserve Stage 2 if it already exists.
-      if (parsed?.stage2) {
-        freshProgress.stage2 = parsed.stage2;
-      }
 
       return freshProgress;
     } catch (error) {
@@ -2317,6 +2566,24 @@ function App() {
     return (
       savedProgress?.stage1?.classes?.[classKey] ||
       createEmptyClassProgress()
+    );
+  };
+
+  const getSavedStage2ClassProgress = (classNumber) => {
+    const classKey = String(getNormalizedClassNumber(classNumber));
+
+    return (
+      savedProgress?.stage2?.classes?.[classKey] ||
+      createEmptyStage2ClassProgress()
+    );
+  };
+
+  const getSavedStage3ClassProgress = (classNumber) => {
+    const classKey = String(getNormalizedClassNumber(classNumber));
+
+    return (
+      savedProgress?.stage3?.classes?.[classKey] ||
+      createEmptyStage3ClassProgress()
     );
   };
 
@@ -2589,6 +2856,198 @@ function App() {
     );
 
     return classProgress;
+  };
+
+  // =========================================================
+  // SAVE STAGE 2 QUESTION PROGRESS
+  // =========================================================
+
+  const saveStage2QuestionProgress = (
+    classNumber,
+    levelNumber,
+    exercise,
+    isCorrect,
+    xpOverride = null
+  ) => {
+    if (!exercise || !exercise.id) return null;
+    const classKey = String(getNormalizedClassNumber(classNumber));
+    const levels = getStage2LevelsForClass(classNumber);
+
+    const rawSaved = localStorage.getItem(getActiveProgressKey());
+    let previousProgress;
+    try {
+      previousProgress = rawSaved ? JSON.parse(rawSaved) : createEmptyLearningProgress();
+    } catch {
+      previousProgress = createEmptyLearningProgress();
+    }
+
+    if (!previousProgress.stage2?.classes) {
+      previousProgress = {
+        ...previousProgress,
+        stage2: {
+          classes: {
+            1: createEmptyStage2ClassProgress(),
+            2: createEmptyStage2ClassProgress(),
+            3: createEmptyStage2ClassProgress(),
+            4: createEmptyStage2ClassProgress(),
+            5: createEmptyStage2ClassProgress(),
+          },
+        },
+      };
+    }
+
+    const previousClassProgress = {
+      ...createEmptyStage2ClassProgress(),
+      ...(previousProgress.stage2.classes[classKey] || {}),
+    };
+
+    const completedQuestionIds = new Set(previousClassProgress.completedQuestionIds || []);
+    const correctQuestionIds = new Set(previousClassProgress.correctQuestionIds || []);
+
+    completedQuestionIds.add(exercise.id);
+    if (isCorrect) {
+      correctQuestionIds.add(exercise.id);
+    }
+
+    const completedLevels = levels
+      .filter((level) => level.exercises.every((item) => completedQuestionIds.has(item.id)))
+      .map((level) => level.id);
+
+    const completedQuestions = completedQuestionIds.size;
+    const updatedXP =
+      xpOverride !== null
+        ? Math.max(0, Number(xpOverride) || 0)
+        : Number.isFinite(previousClassProgress.xp) && previousClassProgress.xp > 0
+          ? previousClassProgress.xp
+          : correctQuestionIds.size;
+
+    const updatedClassProgress = {
+      ...previousClassProgress,
+      completedQuestionIds: Array.from(completedQuestionIds),
+      correctQuestionIds: Array.from(correctQuestionIds),
+      completedQuestions,
+      completedLevels,
+      totalQuestions: 27,
+      stageCompleted: completedQuestions >= 27,
+      xp: updatedXP,
+      lastAnsweredQuestionId: exercise.id,
+      lastAnsweredLevel: levelNumber,
+      savedAt: new Date().toISOString(),
+    };
+
+    const updatedProgress = {
+      ...previousProgress,
+      stage2: {
+        ...previousProgress.stage2,
+        classes: {
+          ...previousProgress.stage2.classes,
+          [classKey]: updatedClassProgress,
+        },
+      },
+    };
+
+    try {
+      localStorage.setItem(getActiveProgressKey(), JSON.stringify(updatedProgress));
+    } catch {}
+
+    setSavedProgress(updatedProgress);
+    return updatedClassProgress;
+  };
+
+  // =========================================================
+  // SAVE STAGE 3 QUESTION PROGRESS
+  // =========================================================
+
+  const saveStage3QuestionProgress = (
+    classNumber,
+    levelNumber,
+    exercise,
+    isCorrect,
+    xpOverride = null
+  ) => {
+    if (!exercise || !exercise.id) return null;
+    const classKey = String(getNormalizedClassNumber(classNumber));
+    const levels = getStage3LevelsForClass(classNumber);
+
+    const rawSaved = localStorage.getItem(getActiveProgressKey());
+    let previousProgress;
+    try {
+      previousProgress = rawSaved ? JSON.parse(rawSaved) : createEmptyLearningProgress();
+    } catch {
+      previousProgress = createEmptyLearningProgress();
+    }
+
+    if (!previousProgress.stage3?.classes) {
+      previousProgress = {
+        ...previousProgress,
+        stage3: {
+          classes: {
+            1: createEmptyStage3ClassProgress(),
+            2: createEmptyStage3ClassProgress(),
+            3: createEmptyStage3ClassProgress(),
+            4: createEmptyStage3ClassProgress(),
+            5: createEmptyStage3ClassProgress(),
+          },
+        },
+      };
+    }
+
+    const previousClassProgress = {
+      ...createEmptyStage3ClassProgress(),
+      ...(previousProgress.stage3.classes[classKey] || {}),
+    };
+
+    const completedQuestionIds = new Set(previousClassProgress.completedQuestionIds || []);
+    const correctQuestionIds = new Set(previousClassProgress.correctQuestionIds || []);
+
+    completedQuestionIds.add(exercise.id);
+    if (isCorrect) {
+      correctQuestionIds.add(exercise.id);
+    }
+
+    const completedLevels = levels
+      .filter((level) => level.exercises.every((item) => completedQuestionIds.has(item.id)))
+      .map((level) => level.id);
+
+    const completedQuestions = completedQuestionIds.size;
+    const updatedXP =
+      xpOverride !== null
+        ? Math.max(0, Number(xpOverride) || 0)
+        : Number.isFinite(previousClassProgress.xp) && previousClassProgress.xp > 0
+          ? previousClassProgress.xp
+          : correctQuestionIds.size * 3;
+
+    const updatedClassProgress = {
+      ...previousClassProgress,
+      completedQuestionIds: Array.from(completedQuestionIds),
+      correctQuestionIds: Array.from(correctQuestionIds),
+      completedQuestions,
+      completedLevels,
+      totalQuestions: 27,
+      stageCompleted: completedQuestions >= 27,
+      xp: updatedXP,
+      lastAnsweredQuestionId: exercise.id,
+      lastAnsweredLevel: levelNumber,
+      savedAt: new Date().toISOString(),
+    };
+
+    const updatedProgress = {
+      ...previousProgress,
+      stage3: {
+        ...previousProgress.stage3,
+        classes: {
+          ...previousProgress.stage3.classes,
+          [classKey]: updatedClassProgress,
+        },
+      },
+    };
+
+    try {
+      localStorage.setItem(getActiveProgressKey(), JSON.stringify(updatedProgress));
+    } catch {}
+
+    setSavedProgress(updatedProgress);
+    return updatedClassProgress;
   };
 
   // =========================================================
@@ -3977,18 +4436,47 @@ function App() {
     window.speechSynthesis?.cancel();
 
     const classNumber = getNormalizedClassNumber(studentClass || selectedClass);
-    setPlayStage2Levels(createShuffledStage2(classNumber));
+    const freshLevels = createShuffledStage2(classNumber);
+    setPlayStage2Levels(freshLevels);
 
-    const currentCumulative = userCtx ? userCtx.totalXp : (stageScore || 10);
-    setStage2LevelIndex(0);
-    setStage2ExerciseIndex(0);
+    const storedProgress = getSavedStage2ClassProgress(classNumber);
+    const currentCumulative = userCtx ? userCtx.totalXp : (
+      Number.isFinite(storedProgress.xp) && storedProgress.xp > 0
+        ? storedProgress.xp
+        : (stageScore || 10)
+    );
+
+    let resumeLevel = 0;
+    let resumeQuestion = 0;
+    let foundUnanswered = false;
+
+    for (let lIdx = 0; lIdx < freshLevels.length; lIdx++) {
+      for (let qIdx = 0; qIdx < freshLevels[lIdx].exercises.length; qIdx++) {
+        const qId = freshLevels[lIdx].exercises[qIdx].id;
+        if (!storedProgress.completedQuestionIds?.includes(qId)) {
+          resumeLevel = lIdx;
+          resumeQuestion = qIdx;
+          foundUnanswered = true;
+          break;
+        }
+      }
+      if (foundUnanswered) break;
+    }
+
+    if (!foundUnanswered && (storedProgress.completedQuestions || 0) >= 27) {
+      resumeLevel = 0;
+      resumeQuestion = 0;
+    }
+
+    setStage2LevelIndex(resumeLevel);
+    setStage2ExerciseIndex(resumeQuestion);
     setStage2Message("");
     setStage2SpokenText("");
     setStage2Accuracy(0);
     setStage2Listening(false);
     setStage2Score(currentCumulative);
-    setStage2CorrectCount(0);
-    stage2AnsweredQuestionsRef.current = new Set();
+    setStage2CorrectCount(storedProgress.correctQuestionIds?.length || 0);
+    stage2AnsweredQuestionsRef.current = new Set(storedProgress.completedQuestionIds || []);
     setStage2Hint("");
     setStage2HintUsed(false);
     setStage2ShowHint(false);
@@ -4011,10 +4499,40 @@ function App() {
     }
 
     const classNumber = getNormalizedClassNumber(studentClass || selectedClass);
-    setPlayStage3Levels(getStage3LevelsForClass(classNumber));
-    const currentCumulative = userCtx ? userCtx.totalXp : (stage2Score || stageScore || 10);
-    setStage3LevelIndex(0);
-    setStage3ExerciseIndex(0);
+    const freshLevels = getStage3LevelsForClass(classNumber);
+    setPlayStage3Levels(freshLevels);
+
+    const storedProgress = getSavedStage3ClassProgress(classNumber);
+    const currentCumulative = userCtx ? userCtx.totalXp : (
+      Number.isFinite(storedProgress.xp) && storedProgress.xp > 0
+        ? storedProgress.xp
+        : (stage2Score || stageScore || 10)
+    );
+
+    let resumeLevel = 0;
+    let resumeQuestion = 0;
+    let foundUnanswered = false;
+
+    for (let lIdx = 0; lIdx < freshLevels.length; lIdx++) {
+      for (let qIdx = 0; qIdx < freshLevels[lIdx].exercises.length; qIdx++) {
+        const qId = freshLevels[lIdx].exercises[qIdx].id;
+        if (!storedProgress.completedQuestionIds?.includes(qId)) {
+          resumeLevel = lIdx;
+          resumeQuestion = qIdx;
+          foundUnanswered = true;
+          break;
+        }
+      }
+      if (foundUnanswered) break;
+    }
+
+    if (!foundUnanswered && (storedProgress.completedQuestions || 0) >= 27) {
+      resumeLevel = 0;
+      resumeQuestion = 0;
+    }
+
+    setStage3LevelIndex(resumeLevel);
+    setStage3ExerciseIndex(resumeQuestion);
     setStage3Answer("");
     setStage3Message("");
     setStage3Hint("");
@@ -5243,6 +5761,7 @@ function App() {
         setStage2Score((previous) => previous + 1);
         if (userCtx) userCtx.awardXp(1);
         recordStagePerformance("stage2", true, exercise, bestSpoken);
+        saveStage2QuestionProgress(selectedClass, stage2LevelIndex + 1, exercise, true);
       } else {
         setStage2Message(
           "Good attempt! Practice speaking clearly, or tap 'I Read It Aloud' below to accept."
@@ -5346,6 +5865,7 @@ function App() {
     const exercise = playStage2Levels[stage2LevelIndex]?.exercises?.[stage2ExerciseIndex];
     if (exercise) {
       recordStagePerformance("stage2", true, exercise, stage2SpokenText || exercise.text);
+      saveStage2QuestionProgress(selectedClass, stage2LevelIndex + 1, exercise, true);
     }
   };
 
@@ -5361,6 +5881,11 @@ function App() {
       try {
         stage2RecognitionRef.current.stop();
       } catch { }
+    }
+
+    const currentEx = playStage2Levels[stage2LevelIndex]?.exercises?.[stage2ExerciseIndex];
+    if (currentEx) {
+      saveStage2QuestionProgress(selectedClass, stage2LevelIndex + 1, currentEx, stage2Accuracy >= 70);
     }
 
     const level =
@@ -5386,74 +5911,6 @@ function App() {
 
       return;
     }
-
-    /*
-      Current level completed.
-      SAVE PROGRESS.
-    */
-
-    const completedLevel =
-      stage2LevelIndex + 1;
-
-    const totalStage2Questions =
-      playStage2Levels.reduce(
-        (total, item) =>
-          total +
-          item.exercises.length,
-        0
-      );
-
-    const completedQuestions =
-      playStage2Levels
-        .slice(
-          0,
-          completedLevel
-        )
-        .reduce(
-          (total, item) =>
-            total +
-            item.exercises.length,
-          0
-        );
-
-    const oldProgress =
-      JSON.parse(
-        localStorage.getItem(
-          getActiveProgressKey()
-        ) || "{}"
-      );
-
-    const updatedProgress = {
-      ...oldProgress,
-
-      stage2: {
-        completedLevels:
-          Array.from(
-            {
-              length:
-                completedLevel,
-            },
-            (_, index) =>
-              index + 1
-          ),
-
-        completedQuestions,
-
-        totalQuestions:
-          totalStage2Questions,
-      },
-    };
-
-    localStorage.setItem(
-      getActiveProgressKey(),
-      JSON.stringify(
-        updatedProgress
-      )
-    );
-
-    setSavedProgress(
-      updatedProgress
-    );
 
     /*
       Move to next level.
@@ -6256,22 +6713,6 @@ function App() {
                     <span>Listening... Speak clearly into your mic!</span>
                   </div>
                 )}
-
-                {/* Self-Check Oral Reading Fallback Button */}
-                <div style={{ marginTop: "14px", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
-                  <button
-                    type="button"
-                    onClick={acceptStage2ReadingManually}
-                    className="btn-accept-reading"
-                    style={{ fontSize: "0.88rem", padding: "8px 16px" }}
-                    title="Read aloud and tap here to verify and claim your star"
-                  >
-                    <IconCheck size={16} /> I Read It Aloud (Self-Check & Claim XP)
-                  </button>
-                  <span style={{ fontSize: "0.78rem", color: "#15803d", fontWeight: "600" }}>
-                    Prefer reading aloud at your own pace? Tap above anytime!
-                  </span>
-                </div>
 
               </div>
 
@@ -7673,6 +8114,54 @@ function App() {
   if (
     screen === "stages"
   ) {
+    const getModuleStatus = (stageKey, totalQuestions, moduleNumber) => {
+      let completed = 0;
+      const classKey = String(selectedClass);
+      if (stageKey === "stage1") {
+        completed = savedProgress.stage1?.classes?.[classKey]?.completedQuestions || 0;
+      } else if (stageKey === "stage2") {
+        completed = savedProgress.stage2?.classes?.[classKey]?.completedQuestions || 0;
+      } else if (stageKey === "stage3") {
+        completed = savedProgress.stage3?.classes?.[classKey]?.completedQuestions || 0;
+      } else if (stageKey === "stage4") {
+        completed = savedProgress.stage4?.classes?.[classKey]?.completedQuestions || 0;
+      } else if (stageKey === "shapes") {
+        completed = savedProgress.shapes?.classes?.[classKey]?.completedQuestions || 0;
+      } else if (stageKey === "comprehension") {
+        completed = savedProgress.comprehension?.classes?.[classKey]?.completedQuestions || 0;
+      }
+
+      const isCompleted = totalQuestions > 0 && completed >= totalQuestions;
+      const isStarted = completed > 0;
+
+      let label = `Begin Module ${moduleNumber}`;
+      if (isCompleted) {
+        label = `✓ Completed • Practice Again`;
+      } else if (isStarted) {
+        label = `Resume Module ${moduleNumber} (${completed}/${totalQuestions})`;
+      }
+
+      return {
+        completed,
+        totalQuestions,
+        isCompleted,
+        isStarted,
+        label,
+        className: isCompleted ? "primary-button module-btn-completed" : "primary-button",
+      };
+    };
+
+    const mod1Status = getModuleStatus("stage1", 27, 1);
+    const mod2Status = getModuleStatus("stage2", 27, 2);
+    const mod3Status = getModuleStatus("stage3", 27, 3);
+    const mod4Status = getModuleStatus("stage4", 30, 4);
+    const mod5Status = getModuleStatus("shapes", 16, 5);
+    const compTotal = getComprehensionLevelsForClass(selectedClass).reduce(
+      (sum, l) => sum + l.questions.length,
+      0
+    );
+    const mod6Status = getModuleStatus("comprehension", compTotal, 6);
+
     return (
       <div className="app">
         <SpatialBackground3D pulseTrigger={spatialPulse} pulseType={pulseType} />
@@ -7742,37 +8231,22 @@ function App() {
               <div className="saved-progress-card">
                 <strong><IconLayers size={14} /> {t("savedProgress", "Saved Assessment Progress")}</strong>
                 <p>
-                  Module 01 (Visual Perception): {(
-                    savedProgress.stage1?.classes?.[
-                      String(selectedClass)
-                    ]?.completedQuestions || 0
-                  )} / 27 QUESTIONS
+                  Module 01 (Visual Perception): {mod1Status.completed} / 27 QUESTIONS
                 </p>
                 <p>
-                  Module 04 (Numerical Cognition): {(
-                    savedProgress.stage4?.classes?.[
-                      String(selectedClass)
-                    ]?.completedQuestions || 0
-                  )} / 30 QUESTIONS
+                  Module 02 (Auditory Processing & Speech): {mod2Status.completed} / 27 QUESTIONS
                 </p>
                 <p>
-                  Module 05 (Spatial Geometry): {(
-                    savedProgress.shapes?.classes?.[
-                      String(selectedClass)
-                    ]?.completedQuestions || 0
-                  )} / 16 QUESTIONS
+                  Module 03 (Written Expression & Spelling): {mod3Status.completed} / 27 QUESTIONS
                 </p>
                 <p>
-                  Module 06 (Reading Comprehension): {(
-                    savedProgress.comprehension?.classes?.[
-                      String(selectedClass)
-                    ]?.completedQuestions || 0
-                  )} / {(
-                    getComprehensionLevelsForClass(selectedClass).reduce(
-                      (sum, l) => sum + l.questions.length,
-                      0
-                    )
-                  )} QUESTIONS
+                  Module 04 (Numerical Cognition): {mod4Status.completed} / 30 QUESTIONS
+                </p>
+                <p>
+                  Module 05 (Spatial Geometry): {mod5Status.completed} / 16 QUESTIONS
+                </p>
+                <p>
+                  Module 06 (Reading Comprehension): {mod6Status.completed} / {compTotal} QUESTIONS
                 </p>
               </div>
 
@@ -7818,10 +8292,10 @@ function App() {
                 </div>
 
                 <button
-                  className="primary-button"
+                  className={mod1Status.className}
                   onClick={() => showGladeTransition("stage1")}
                 >
-                  Begin Module 1
+                  {mod1Status.label}
                 </button>
 
               </div>
@@ -7864,10 +8338,10 @@ function App() {
                 </div>
 
                 <button
-                  className="primary-button"
+                  className={mod2Status.className}
                   onClick={() => showGladeTransition("stage2")}
                 >
-                  Begin Module 2
+                  {mod2Status.label}
                 </button>
 
               </div>
@@ -7908,10 +8382,10 @@ function App() {
                 </div>
 
                 <button
-                  className="primary-button"
+                  className={mod3Status.className}
                   onClick={() => showGladeTransition("stage3")}
                 >
-                  Begin Module 3
+                  {mod3Status.label}
                 </button>
 
               </div>
@@ -7954,10 +8428,10 @@ function App() {
                 </div>
 
                 <button
-                  className="primary-button"
+                  className={mod4Status.className}
                   onClick={() => showGladeTransition("stage4")}
                 >
-                  Begin Module 4
+                  {mod4Status.label}
                 </button>
 
               </div>
@@ -8000,10 +8474,10 @@ function App() {
                 </div>
 
                 <button
-                  className="primary-button"
+                  className={mod5Status.className}
                   onClick={() => showGladeTransition("shapes")}
                 >
-                  Begin Module 5
+                  {mod5Status.label}
                 </button>
 
               </div>
@@ -8046,10 +8520,10 @@ function App() {
                 </div>
 
                 <button
-                  className="primary-button"
+                  className={mod6Status.className}
                   onClick={() => showGladeTransition("comprehension")}
                 >
-                  Begin Module 6
+                  {mod6Status.label}
                 </button>
 
               </div>
@@ -9443,6 +9917,7 @@ function App() {
           }}
           onRecordPerformance={(stageKey, isCorrect, exercise, answer) => {
             recordStagePerformance(stageKey, isCorrect, exercise, answer);
+            saveStage3QuestionProgress(selectedClass, stage3LevelIndex + 1, exercise, isCorrect);
           }}
           onNextQuestion={() => {
             const currentLevel = stage3Bank[stage3LevelIndex] || stage3Bank[0];
@@ -9748,8 +10223,7 @@ function App() {
               </div>
 
               <div className="listening-hint">
-                Compare options carefully and identify the exact match.
-                IT CAREFULLY WITH EACH OPTION.
+                Compare the options carefully and identify the exact match.
               </div>
 
               {/* OPTIONS — NO AUDIO */}
