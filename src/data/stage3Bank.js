@@ -1,275 +1,35 @@
 /* =========================================================
    STAGE 3 QUESTION BANK — CLASS 1 TO 5
    Written Expression & Language Encoding
-   5 Classes × 3 Levels (Easy, Medium, Hard) × 9 Questions = 135 Questions
+   Re-exported and synchronized with audited module3_classes.js
    ========================================================= */
 
-export const CLASS1_STAGE3_BANK = [
-  {
-    id: 1,
-    title: "LEVEL 1 — EASY",
-    difficulty: "EASY",
-    description: "Complete the missing letter.",
-    exercises: [
-      { id: "c1-s3-l1-q1", prompt: "Complete: C _ T", question: "Complete: C _ T", options: ["A", "O", "E", "I"], answer: "A" },
-      { id: "c1-s3-l1-q2", prompt: "Complete: D _ G", question: "Complete: D _ G", options: ["O", "A", "E", "U"], answer: "O" },
-      { id: "c1-s3-l1-q3", prompt: "Complete: S _ N", question: "Complete: S _ N", options: ["U", "A", "O", "E"], answer: "U" },
-      { id: "c1-s3-l1-q4", prompt: "Complete: M _ P", question: "Complete: M _ P", options: ["A", "O", "E", "I"], answer: "A" },
-      { id: "c1-s3-l1-q5", prompt: "Complete: B _ D", question: "Complete: B _ D", options: ["E", "A", "O", "U"], answer: "E" },
-      { id: "c1-s3-l1-q6", prompt: "Complete: F _ SH", question: "Complete: F _ SH", options: ["I", "A", "E", "O"], answer: "I" },
-      { id: "c1-s3-l1-q7", prompt: "Complete: TR _ E", question: "Complete: TR _ E", options: ["E", "A", "O", "U"], answer: "E" },
-      { id: "c1-s3-l1-q8", prompt: "Complete: B _ LL", question: "Complete: B _ LL", options: ["A", "E", "I", "U"], answer: "A" },
-      { id: "c1-s3-l1-q9", prompt: "Complete: H _ T", question: "Complete: H _ T", options: ["A", "O", "E", "I"], answer: "A" },
-    ],
-  },
-  {
-    id: 2,
-    title: "LEVEL 2 — MEDIUM",
-    difficulty: "MEDIUM",
-    description: "Arrange the letters to make a word.",
-    exercises: [
-      { id: "c1-s3-l2-q1", prompt: "Arrange: C / A / T", question: "Arrange: C / A / T", options: ["CAT", "ACT", "TAC", "TCA"], answer: "CAT" },
-      { id: "c1-s3-l2-q2", prompt: "Arrange: D / O / G", question: "Arrange: D / O / G", options: ["DOG", "GOD", "ODG", "GDO"], answer: "DOG" },
-      { id: "c1-s3-l2-q3", prompt: "Arrange: S / U / N", question: "Arrange: S / U / N", options: ["SUN", "NSU", "USN", "SNU"], answer: "SUN" },
-      { id: "c1-s3-l2-q4", prompt: "Arrange: B / A / G", question: "Arrange: B / A / G", options: ["BAG", "GAB", "ABG", "BGA"], answer: "BAG" },
-      { id: "c1-s3-l2-q5", prompt: "Arrange: R / U / N", question: "Arrange: R / U / N", options: ["RUN", "URN", "NRU", "NUR"], answer: "RUN" },
-      { id: "c1-s3-l2-q6", prompt: "Arrange: M / A / P", question: "Arrange: M / A / P", options: ["MAP", "PAM", "AMP", "APM"], answer: "MAP" },
-      { id: "c1-s3-l2-q7", prompt: "Arrange: F / I / S / H", question: "Arrange: F / I / S / H", options: ["FISH", "SIFH", "HIFS", "SHIF"], answer: "FISH" },
-      { id: "c1-s3-l2-q8", prompt: "Arrange: B / O / O / K", question: "Arrange: B / O / O / K", options: ["BOOK", "KOOB", "OOBK", "BKOO"], answer: "BOOK" },
-      { id: "c1-s3-l2-q9", prompt: "Arrange: T / R / E / E", question: "Arrange: T / R / E / E", options: ["TREE", "EETR", "RETE", "TEER"], answer: "TREE" },
-    ],
-  },
-  {
-    id: 3,
-    title: "LEVEL 3 — HARD",
-    difficulty: "HARD",
-    description: "Choose the sentence that makes sense.",
-    exercises: [
-      { id: "c1-s3-l3-q1", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The bird flies in the sky.", "The bird swims in stone.", "The bird walks underwater."], answer: "The bird flies in the sky." },
-      { id: "c1-s3-l3-q2", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The dog runs in the park.", "The dog flies to the moon.", "The dog sleeps in the cloud."], answer: "The dog runs in the park." },
-      { id: "c1-s3-l3-q3", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The fish swims in water.", "The fish walks on trees.", "The fish flies with leaves."], answer: "The fish swims in water." },
-      { id: "c1-s3-l3-q4", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The boy reads a book.", "The boy drinks a shoe.", "The boy eats a pencil."], answer: "The boy reads a book." },
-      { id: "c1-s3-l3-q5", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The girl drinks water.", "The girl wears the water.", "The girl bakes the pencil."], answer: "The girl drinks water." },
-      { id: "c1-s3-l3-q6", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The sun shines in the sky.", "The sun swims in the pond.", "The sun jumps in the room."], answer: "The sun shines in the sky." },
-      { id: "c1-s3-l3-q7", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The teacher writes on the board.", "The teacher drinks the board.", "The teacher flies on the desk."], answer: "The teacher writes on the board." },
-      { id: "c1-s3-l3-q8", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The cat sleeps on the mat.", "The cat boils the wall.", "The cat barks in the lake."], answer: "The cat sleeps on the mat." },
-      { id: "c1-s3-l3-q9", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The children play outside.", "The children drive an airplane.", "The children fly to the sun."], answer: "The children play outside." },
-    ],
-  },
-];
+export {
+  CLASS1_STAGE3_BANK,
+  CLASS2_STAGE3_BANK,
+  CLASS3_STAGE3_BANK,
+  CLASS4_STAGE3_BANK,
+  CLASS5_STAGE3_BANK,
+  getModule3LevelsForClass
+} from "./module3_classes.js";
 
-export const CLASS2_STAGE3_BANK = [
-  {
-    id: 1,
-    title: "LEVEL 1 — EASY",
-    difficulty: "EASY",
-    description: "Complete the missing letter.",
-    exercises: [
-      { id: "c2-s3-l1-q1", prompt: "Complete: SH _ P", question: "Complete: SH _ P", options: ["I", "A", "E", "O"], answer: "I" },
-      { id: "c2-s3-l1-q2", prompt: "Complete: CH _ IR", question: "Complete: CH _ IR", options: ["A", "E", "O", "U"], answer: "A" },
-      { id: "c2-s3-l1-q3", prompt: "Complete: F _ SH", question: "Complete: F _ SH", options: ["I", "A", "E", "O"], answer: "I" },
-      { id: "c2-s3-l1-q4", prompt: "Complete: TR _ IN", question: "Complete: TR _ IN", options: ["A", "E", "I", "O"], answer: "A" },
-      { id: "c2-s3-l1-q5", prompt: "Complete: GR _ EN", question: "Complete: GR _ EN", options: ["E", "A", "O", "I"], answer: "E" },
-      { id: "c2-s3-l1-q6", prompt: "Complete: BL _ CK", question: "Complete: BL _ CK", options: ["A", "E", "I", "O"], answer: "A" },
-      { id: "c2-s3-l1-q7", prompt: "Complete: SM _ LE", question: "Complete: SM _ LE", options: ["I", "A", "E", "O"], answer: "I" },
-      { id: "c2-s3-l1-q8", prompt: "Complete: FL _ WER", question: "Complete: FL _ WER", options: ["O", "A", "E", "U"], answer: "O" },
-      { id: "c2-s3-l1-q9", prompt: "Complete: PL _ Y", question: "Complete: PL _ Y", options: ["A", "E", "I", "O"], answer: "A" },
-    ],
-  },
-  {
-    id: 2,
-    title: "LEVEL 2 — MEDIUM",
-    difficulty: "MEDIUM",
-    description: "Arrange the letters to make a word.",
-    exercises: [
-      { id: "c2-s3-l2-q1", prompt: "Arrange: S / H / I / P", question: "Arrange: S / H / I / P", options: ["SHIP", "HISP", "PISH", "SPSI"], answer: "SHIP" },
-      { id: "c2-s3-l2-q2", prompt: "Arrange: C / H / A / I / R", question: "Arrange: C / H / A / I / R", options: ["CHAIR", "CHARI", "CIHAR", "RAIHC"], answer: "CHAIR" },
-      { id: "c2-s3-l2-q3", prompt: "Arrange: T / R / A / I / N", question: "Arrange: T / R / A / I / N", options: ["TRAIN", "TRIAN", "TARIN", "RTAIN"], answer: "TRAIN" },
-      { id: "c2-s3-l2-q4", prompt: "Arrange: S / C / H / O / O / L", question: "Arrange: S / C / H / O / O / L", options: ["SCHOOL", "SCHOLL", "SHCOOL", "SOLCHO"], answer: "SCHOOL" },
-      { id: "c2-s3-l2-q5", prompt: "Arrange: F / L / O / W / E / R", question: "Arrange: F / L / O / W / E / R", options: ["FLOWER", "FLOWRE", "FLWOER", "FROWE L"], answer: "FLOWER" },
-      { id: "c2-s3-l2-q6", prompt: "Arrange: G / A / R / D / E / N", question: "Arrange: G / A / R / D / E / N", options: ["GARDEN", "GARDAN", "GREDAN", "GADREN"], answer: "GARDEN" },
-      { id: "c2-s3-l2-q7", prompt: "Arrange: T / E / A / C / H / E / R", question: "Arrange: T / E / A / C / H / E / R", options: ["TEACHER", "TEACHRA", "TAECHER", "TEECHAR"], answer: "TEACHER" },
-      { id: "c2-s3-l2-q8", prompt: "Arrange: M / O / R / N / I / N / G", question: "Arrange: M / O / R / N / I / N / G", options: ["MORNING", "MORNGIN", "MONRING", "MNORIG"], answer: "MORNING" },
-      { id: "c2-s3-l2-q9", prompt: "Arrange: P / I / C / T / U / R / E", question: "Arrange: P / I / C / T / U / R / E", options: ["PICTURE", "PICTUER", "PCITURE", "PTCIURE"], answer: "PICTURE" },
-    ],
-  },
-  {
-    id: 3,
-    title: "LEVEL 3 — HARD",
-    difficulty: "HARD",
-    description: "Choose the sentence that makes sense.",
-    exercises: [
-      { id: "c2-s3-l3-q1", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The bird sits in the tree.", "The bird flies underground.", "The tree sits in the bird."], answer: "The bird sits in the tree." },
-      { id: "c2-s3-l3-q2", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The teacher writes on the board.", "The board writes on the teacher.", "The teacher eats the board."], answer: "The teacher writes on the board." },
-      { id: "c2-s3-l3-q3", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The children play in the park.", "The park plays inside children.", "The children fly to school on a leaf."], answer: "The children play in the park." },
-      { id: "c2-s3-l3-q4", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The fish swims in the pond.", "The pond swims on the fish.", "The fish walks up the tree."], answer: "The fish swims in the pond." },
-      { id: "c2-s3-l3-q5", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The rabbit eats a carrot.", "The carrot eats a rabbit.", "The rabbit reads a pencil."], answer: "The rabbit eats a carrot." },
-      { id: "c2-s3-l3-q6", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The boy carries his school bag.", "The school bag carries the boy.", "The boy carries the entire school."], answer: "The boy carries his school bag." },
-      { id: "c2-s3-l3-q7", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The girl reads a story book.", "The story book reads the girl.", "The girl drinks the story book."], answer: "The girl reads a story book." },
-      { id: "c2-s3-l3-q8", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The dog sleeps under the table.", "The table sleeps under the dog.", "The dog flies over the moon."], answer: "The dog sleeps under the table." },
-      { id: "c2-s3-l3-q9", prompt: "Which sentence makes sense?", question: "Which sentence makes sense?", options: ["The sun shines during the day.", "The sun swims in a puddle.", "The day shines the sun."], answer: "The sun shines during the day." },
-    ],
-  },
-];
+import {
+  CLASS1_STAGE3_BANK,
+  CLASS2_STAGE3_BANK,
+  CLASS3_STAGE3_BANK,
+  CLASS4_STAGE3_BANK,
+  CLASS5_STAGE3_BANK,
+  getModule3LevelsForClass
+} from "./module3_classes.js";
 
-export const CLASS3_STAGE3_BANK = [
-  {
-    id: 1,
-    title: "LEVEL 1 — EASY",
-    difficulty: "EASY",
-    description: "Complete the missing letter.",
-    exercises: [
-      { id: "c3-s3-l1-q1", prompt: "Complete: BEAUTI_ UL", question: "Complete: BEAUTI_ UL", options: ["F", "V", "P", "T"], answer: "F" },
-      { id: "c3-s3-l1-q2", prompt: "Complete: FRI_ ND", question: "Complete: FRI_ ND", options: ["E", "A", "I", "O"], answer: "E" },
-      { id: "c3-s3-l1-q3", prompt: "Complete: TEA_ HER", question: "Complete: TEA_ HER", options: ["C", "K", "S", "T"], answer: "C" },
-      { id: "c3-s3-l1-q4", prompt: "Complete: SCH_ OL", question: "Complete: SCH_ OL", options: ["O", "U", "A", "E"], answer: "O" },
-      { id: "c3-s3-l1-q5", prompt: "Complete: GARD_ N", question: "Complete: GARD_ N", options: ["E", "A", "I", "O"], answer: "E" },
-      { id: "c3-s3-l1-q6", prompt: "Complete: MOR_ ING", question: "Complete: MOR_ ING", options: ["N", "M", "R", "L"], answer: "N" },
-      { id: "c3-s3-l1-q7", prompt: "Complete: PICT_ RE", question: "Complete: PICT_ RE", options: ["U", "O", "E", "A"], answer: "U" },
-      { id: "c3-s3-l1-q8", prompt: "Complete: ANS_ ER", question: "Complete: ANS_ ER", options: ["W", "V", "U", "R"], answer: "W" },
-      { id: "c3-s3-l1-q9", prompt: "Complete: QUES_ ION", question: "Complete: QUES_ ION", options: ["T", "S", "C", "P"], answer: "T" },
-    ],
-  },
-  {
-    id: 2,
-    title: "LEVEL 2 — MEDIUM",
-    difficulty: "MEDIUM",
-    description: "Choose the sensible sentence.",
-    exercises: [
-      { id: "c3-s3-l2-q1", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The boy carried his books to school.", "The boy carried the entire school to his room.", "The school walked to the boy."], answer: "The boy carried his books to school." },
-      { id: "c3-s3-l2-q2", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The bird flew across the sky.", "The sky flew into the bird.", "The bird ran under the deep soil."], answer: "The bird flew across the sky." },
-      { id: "c3-s3-l2-q3", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The children planted flowers in the garden.", "The flowers planted children in the garden.", "The children drank the flower pot."], answer: "The children planted flowers in the garden." },
-      { id: "c3-s3-l2-q4", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The teacher explained the lesson.", "The lesson explained the teacher.", "The teacher erased the entire classroom."], answer: "The teacher explained the lesson." },
-      { id: "c3-s3-l2-q5", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The family ate dinner together.", "Dinner ate the family together.", "The family ate the dinner table."], answer: "The family ate dinner together." },
-      { id: "c3-s3-l2-q6", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The dog chased the ball.", "The ball chased the dog through the sky.", "The dog flew with the cloud."], answer: "The dog chased the ball." },
-      { id: "c3-s3-l2-q7", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The girl wrote her homework.", "The homework wrote the girl.", "The girl chewed the wooden desk."], answer: "The girl wrote her homework." },
-      { id: "c3-s3-l2-q8", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The students listened carefully.", "The chairs listened carefully.", "The students erased their ears."], answer: "The students listened carefully." },
-      { id: "c3-s3-l2-q9", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The rain made the ground wet.", "The ground made the clouds wet.", "The rain made the sun freeze."], answer: "The rain made the ground wet." },
-    ],
-  },
-  {
-    id: 3,
-    title: "LEVEL 3 — HARD",
-    difficulty: "HARD",
-    description: "Reading comprehension questions.",
-    exercises: [
-      { id: "c3-s3-l3-q1", prompt: "What is the main idea? Reading helps us learn new things.", question: "What is the main idea? Reading helps us learn new things.", options: ["Reading is useful.", "Reading is boring.", "Reading is impossible.", "Reading takes too long."], answer: "Reading is useful." },
-      { id: "c3-s3-l3-q2", prompt: "What does the bird build?", question: "What does the bird build?", options: ["A nest", "A car", "A house of bricks", "A school"], answer: "A nest" },
-      { id: "c3-s3-l3-q3", prompt: "Where do children go to learn?", question: "Where do children go to learn?", options: ["School", "Playground", "Supermarket", "Zoo"], answer: "School" },
-      { id: "c3-s3-l3-q4", prompt: "Why should we drink water?", question: "Why should we drink water?", options: ["To stay healthy", "To get cold", "To sleep early", "To fly"], answer: "To stay healthy" },
-      { id: "c3-s3-l3-q5", prompt: "What does a teacher do?", question: "What does a teacher do?", options: ["Teaches students", "Drives a bus", "Fixes shoes", "Paints walls"], answer: "Teaches students" },
-      { id: "c3-s3-l3-q6", prompt: "What do plants need to grow?", question: "What do plants need to grow?", options: ["Water and sunlight", "Juice and candy", "Darkness and stones", "Bread and butter"], answer: "Water and sunlight" },
-      { id: "c3-s3-l3-q7", prompt: "Who helps students learn?", question: "Who helps students learn?", options: ["Teacher", "Chef", "Pilot", "Mechanic"], answer: "Teacher" },
-      { id: "c3-s3-l3-q8", prompt: "Where can we borrow books?", question: "Where can we borrow books?", options: ["Library", "Hospital", "Police station", "Kitchen"], answer: "Library" },
-      { id: "c3-s3-l3-q9", prompt: "What should students do before answering?", question: "What should students do before answering?", options: ["Read the question carefully", "Close the book", "Guess immediately", "Leave the room"], answer: "Read the question carefully" },
-    ],
-  },
-];
+export default {
+  CLASS1_STAGE3_BANK,
+  CLASS2_STAGE3_BANK,
+  CLASS3_STAGE3_BANK,
+  CLASS4_STAGE3_BANK,
+  CLASS5_STAGE3_BANK,
+  getModule3LevelsForClass
+};
 
-export const CLASS4_STAGE3_BANK = [
-  {
-    id: 1,
-    title: "LEVEL 1 — EASY",
-    difficulty: "EASY",
-    description: "Letter patterns and word completion.",
-    exercises: [
-      { id: "c4-s3-l1-q1", prompt: "What comes next? 2, 4, 6, __", question: "What comes next? 2, 4, 6, __", options: ["8", "7", "9", "10"], answer: "8" },
-      { id: "c4-s3-l1-q2", prompt: "What comes next? A, C, E, __", question: "What comes next? A, C, E, __", options: ["G", "F", "H", "I"], answer: "G" },
-      { id: "c4-s3-l1-q3", prompt: "Complete: EDUCATI_ N", question: "Complete: EDUCATI_ N", options: ["O", "A", "E", "I"], answer: "O" },
-      { id: "c4-s3-l1-q4", prompt: "Complete: COMMUNIT_", question: "Complete: COMMUNIT_", options: ["Y", "I", "E", "T"], answer: "Y" },
-      { id: "c4-s3-l1-q5", prompt: "Complete: INFORMATI_ N", question: "Complete: INFORMATI_ N", options: ["O", "A", "E", "U"], answer: "O" },
-      { id: "c4-s3-l1-q6", prompt: "Complete: EXPERIENC_", question: "Complete: EXPERIENC_", options: ["E", "A", "I", "O"], answer: "E" },
-      { id: "c4-s3-l1-q7", prompt: "Complete: DIFFEREN_", question: "Complete: DIFFEREN_", options: ["T", "D", "S", "P"], answer: "T" },
-      { id: "c4-s3-l1-q8", prompt: "Complete: KNOWLEDG_", question: "Complete: KNOWLEDG_", options: ["E", "A", "I", "Y"], answer: "E" },
-      { id: "c4-s3-l1-q9", prompt: "Complete: IMPORTAN_", question: "Complete: IMPORTAN_", options: ["T", "D", "P", "S"], answer: "T" },
-    ],
-  },
-  {
-    id: 2,
-    title: "LEVEL 2 — MEDIUM",
-    difficulty: "MEDIUM",
-    description: "Comprehension, cause/effect, and logical deductions.",
-    exercises: [
-      { id: "c4-s3-l2-q1", prompt: "Choose the best title: A paragraph about daily reading practice", question: "Choose the best title: A paragraph about daily reading practice", options: ["Benefits of Reading", "How to Draw", "Playing in the Park", "Cooking Dinner"], answer: "Benefits of Reading" },
-      { id: "c4-s3-l2-q2", prompt: "Choose the correct conclusion", question: "Choose the correct conclusion", options: ["Practice helps improve skills.", "Practice is never helpful.", "Skills cannot be improved.", "Reading is not needed."], answer: "Practice helps improve skills." },
-      { id: "c4-s3-l2-q3", prompt: "Identify the cause: The ground was wet because it rained.", question: "Identify the cause: The ground was wet because it rained.", options: ["Rain", "Wet ground", "The sun", "The wind"], answer: "Rain" },
-      { id: "c4-s3-l2-q4", prompt: "Identify the effect: The ground was wet because it rained.", question: "Identify the effect: The ground was wet because it rained.", options: ["The ground became wet.", "It stopped raining.", "The ground flew away.", "The plants disappeared."], answer: "The ground became wet." },
-      { id: "c4-s3-l2-q5", prompt: "Find the odd word: apple / banana / carrot / pencil", question: "Find the odd word: apple / banana / carrot / pencil", options: ["pencil", "apple", "banana", "carrot"], answer: "pencil" },
-      { id: "c4-s3-l2-q6", prompt: "Find the word that does not belong: teacher / doctor / school / nurse", question: "Find the word that does not belong: teacher / doctor / school / nurse", options: ["school", "teacher", "doctor", "nurse"], answer: "school" },
-      { id: "c4-s3-l2-q7", prompt: "Complete: First we read, then we ___ the question.", question: "Complete: First we read, then we ___ the question.", options: ["answer", "ignore", "erase", "skip"], answer: "answer" },
-      { id: "c4-s3-l2-q8", prompt: "Complete: The student checked the answer ___ submitting it.", question: "Complete: The student checked the answer ___ submitting it.", options: ["before", "after", "never", "without"], answer: "before" },
-      { id: "c4-s3-l2-q9", prompt: "Choose the sensible sentence", question: "Choose the sensible sentence", options: ["The students completed their project carefully.", "The project completed the students quickly.", "The students ate their project book for lunch."], answer: "The students completed their project carefully." },
-    ],
-  },
-  {
-    id: 3,
-    title: "LEVEL 3 — HARD",
-    difficulty: "HARD",
-    description: "Deep reading strategies and vocabulary reasoning.",
-    exercises: [
-      { id: "c4-s3-l3-q1", prompt: "Which sentence best explains careful reading?", question: "Which sentence best explains careful reading?", options: ["It helps us notice important details.", "It allows us to finish without looking.", "It lets us skip long words.", "It makes reading unnecessary."], answer: "It helps us notice important details." },
-      { id: "c4-s3-l3-q2", prompt: "Why should we check our answers?", question: "Why should we check our answers?", options: ["To find and correct mistakes.", "To waste time.", "To change all answers.", "To erase everything."], answer: "To find and correct mistakes." },
-      { id: "c4-s3-l3-q3", prompt: "What is the main idea of a paragraph?", question: "What is the main idea of a paragraph?", options: ["The most important point.", "The longest word in the text.", "The final punctuation mark.", "A random detail."], answer: "The most important point." },
-      { id: "c4-s3-l3-q4", prompt: "Why is punctuation important?", question: "Why is punctuation important?", options: ["It helps make meaning clear.", "It makes text harder to read.", "It is only used for decoration.", "It replaces words."], answer: "It helps make meaning clear." },
-      { id: "c4-s3-l3-q5", prompt: "What should you do if a word is unfamiliar?", question: "What should you do if a word is unfamiliar?", options: ["Look at the surrounding words/context.", "Skip the entire page.", "Stop reading immediately.", "Ignore the story."], answer: "Look at the surrounding words/context." },
-      { id: "c4-s3-l3-q6", prompt: "Why is practice useful?", question: "Why is practice useful?", options: ["It helps improve skills.", "It causes confusion.", "It makes things harder permanently.", "It deletes knowledge."], answer: "It helps improve skills." },
-      { id: "c4-s3-l3-q7", prompt: "What does “compare” mean?", question: "What does “compare” mean?", options: ["Look for similarities and differences.", "Count the letters in a word.", "Read as fast as possible.", "Write backwards."], answer: "Look for similarities and differences." },
-      { id: "c4-s3-l3-q8", prompt: "What does “sequence” mean?", question: "What does “sequence” mean?", options: ["The order in which things happen.", "A random list of ideas.", "The title of a book.", "The author's name."], answer: "The order in which things happen." },
-      { id: "c4-s3-l3-q9", prompt: "Why should instructions be read carefully?", question: "Why should instructions be read carefully?", options: ["So the task is completed correctly.", "To finish without understanding.", "Because instructions are unimportant.", "To confuse yourself."], answer: "So the task is completed correctly." },
-    ],
-  },
-];
+export const getStage3LevelsForClass = getModule3LevelsForClass;
 
-export const CLASS5_STAGE3_BANK = [
-  {
-    id: 1,
-    title: "LEVEL 1 — EASY",
-    difficulty: "EASY",
-    description: "Numerical and complex spelling completions.",
-    exercises: [
-      { id: "c5-s3-l1-q1", prompt: "What comes next? 5, 10, 15, 20, __", question: "What comes next? 5, 10, 15, 20, __", options: ["25", "24", "30", "22"], answer: "25" },
-      { id: "c5-s3-l1-q2", prompt: "What comes next? 10, 20, 30, 40, __", question: "What comes next? 10, 20, 30, 40, __", options: ["50", "45", "60", "55"], answer: "50" },
-      { id: "c5-s3-l1-q3", prompt: "Complete: RESPONSIBILIT_", question: "Complete: RESPONSIBILIT_", options: ["Y", "I", "E", "T"], answer: "Y" },
-      { id: "c5-s3-l1-q4", prompt: "Complete: COMMUNICATI_ N", question: "Complete: COMMUNICATI_ N", options: ["O", "A", "E", "U"], answer: "O" },
-      { id: "c5-s3-l1-q5", prompt: "Complete the exact spelling: ENVIRONMENT", question: "Complete the exact spelling: ENVIRONMENT", options: ["ENVIRONMENT", "ENVIROMENT", "ENVIRONMANT", "ENVIORNMENT"], answer: "ENVIRONMENT" },
-      { id: "c5-s3-l1-q6", prompt: "Complete: ACHIEVEMEN_", question: "Complete: ACHIEVEMEN_", options: ["T", "D", "P", "S"], answer: "T" },
-      { id: "c5-s3-l1-q7", prompt: "Complete: CONCENTRATI_ N", question: "Complete: CONCENTRATI_ N", options: ["O", "A", "E", "I"], answer: "O" },
-      { id: "c5-s3-l1-q8", prompt: "Complete: OBSERVATI_ N", question: "Complete: OBSERVATI_ N", options: ["O", "A", "E", "U"], answer: "O" },
-      { id: "c5-s3-l1-q9", prompt: "Complete: UNDERSTANDIN_", question: "Complete: UNDERSTANDIN_", options: ["G", "D", "T", "N"], answer: "G" },
-    ],
-  },
-  {
-    id: 2,
-    title: "LEVEL 2 — MEDIUM",
-    difficulty: "MEDIUM",
-    description: "Cause, effect, facts vs opinions, and text structure.",
-    exercises: [
-      { id: "c5-s3-l2-q1", prompt: "Cause: The student practiced every day, so her reading improved.", question: "Cause: The student practiced every day, so her reading improved.", options: ["Daily practice", "Reading improved", "Watching television", "Skipping class"], answer: "Daily practice" },
-      { id: "c5-s3-l2-q2", prompt: "Effect: The student practiced every day, so her reading improved.", question: "Effect: The student practiced every day, so her reading improved.", options: ["Reading improved", "Daily practice", "Rain fell", "School closed"], answer: "Reading improved" },
-      { id: "c5-s3-l2-q3", prompt: "Best title for a passage about checking work", question: "Best title for a passage about checking work", options: ["Why Checking Your Work Matters", "How to Draw Animals", "The Rainy Afternoon", "A Trip to the Market"], answer: "Why Checking Your Work Matters" },
-      { id: "c5-s3-l2-q4", prompt: "Best conclusion", question: "Best conclusion", options: ["Careful checking can reduce mistakes.", "Mistakes cannot be fixed.", "Never check your work.", "Rushing always produces the best score."], answer: "Careful checking can reduce mistakes." },
-      { id: "c5-s3-l2-q5", prompt: "Which statement is an opinion?", question: "Which statement is an opinion?", options: ["Reading is the most enjoyable activity.", "Books contain written information.", "Words are made of letters.", "Schools have classrooms."], answer: "Reading is the most enjoyable activity." },
-      { id: "c5-s3-l2-q6", prompt: "Which statement is a fact?", question: "Which statement is a fact?", options: ["Books contain written information.", "Reading is the easiest subject.", "Everyone loves reading mysteries.", "Homework is always fun."], answer: "Books contain written information." },
-      { id: "c5-s3-l2-q7", prompt: "What should come first?", question: "What should come first?", options: ["Read the instructions.", "Submit the paper.", "Pack the bag to go home.", "Guess the conclusion."], answer: "Read the instructions." },
-      { id: "c5-s3-l2-q8", prompt: "What should come next?", question: "What should come next?", options: ["Complete the task.", "Erase the paper.", "Sleep before reading.", "Leave early."], answer: "Complete the task." },
-      { id: "c5-s3-l2-q9", prompt: "What should happen last?", question: "What should happen last?", options: ["Check the answer.", "Start reading the title.", "Open the textbook.", "Read the question."], answer: "Check the answer." },
-    ],
-  },
-  {
-    id: 3,
-    title: "LEVEL 3 — HARD",
-    difficulty: "HARD",
-    description: "Critical reading comprehension, inference, and analysis.",
-    exercises: [
-      { id: "c5-s3-l3-q1", prompt: "What is the main idea? Careful reading helps students identify important details and avoid mistakes.", question: "What is the main idea? Careful reading helps students identify important details and avoid mistakes.", options: ["Careful reading improves understanding.", "Reading quickly without looking is best.", "Mistakes can never be avoided.", "Details in a text are unimportant."], answer: "Careful reading improves understanding." },
-      { id: "c5-s3-l3-q2", prompt: "Why should a student reread a difficult sentence?", question: "Why should a student reread a difficult sentence?", options: ["To understand it better.", "To make it more confusing.", "To count words.", "To forget the topic."], answer: "To understand it better." },
-      { id: "c5-s3-l3-q3", prompt: "What does “compare” mean?", question: "What does “compare” mean?", options: ["Identify similarities and differences.", "Ignore all connections.", "Only look at colors.", "Spell words aloud."], answer: "Identify similarities and differences." },
-      { id: "c5-s3-l3-q4", prompt: "What does “infer” mean?", question: "What does “infer” mean?", options: ["Work out something from available clues.", "State only what is directly visible.", "Guess without thinking.", "Ignore evidence."], answer: "Work out something from available clues." },
-      { id: "c5-s3-l3-q5", prompt: "Why is context useful when reading an unfamiliar word?", question: "Why is context useful when reading an unfamiliar word?", options: ["It can help determine the word's meaning.", "It makes the font larger.", "It replaces the letters with numbers.", "It erases the sentence."], answer: "It can help determine the word's meaning." },
-      { id: "c5-s3-l3-q6", prompt: "What is the purpose of punctuation?", question: "What is the purpose of punctuation?", options: ["To organize meaning and make sentences clearer.", "To fill empty space on a page.", "To confuse readers.", "To change the language."], answer: "To organize meaning and make sentences clearer." },
-      { id: "c5-s3-l3-q7", prompt: "Why might two sentences that look similar have different meanings?", question: "Why might two sentences that look similar have different meanings?", options: ["A small word, letter, or punctuation mark may differ.", "Sentences always mean the same thing.", "Letters have no connection to meaning.", "Words do not affect sentences."], answer: "A small word, letter, or punctuation mark may differ." },
-      { id: "c5-s3-l3-q8", prompt: "What should a student do after finding a mistake?", question: "What should a student do after finding a mistake?", options: ["Correct it and check the answer again.", "Ignore it and move on.", "Erase all correct answers.", "Stop reading forever."], answer: "Correct it and check the answer again." },
-      { id: "c5-s3-l3-q9", prompt: "Why is attention important in visual recognition tasks?", question: "Why is attention important in visual recognition tasks?", options: ["Small differences may change the answer.", "All options are always identical.", "Visual differences never matter.", "Looking carefully does not help."], answer: "Small differences may change the answer." },
-    ],
-  },
-];

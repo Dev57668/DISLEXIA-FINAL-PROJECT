@@ -1226,7 +1226,7 @@ input[type="text"], input[type="number"], select, textarea {
    ========================================================= */
 .companion-bottom-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 18px;
   margin-top: 24px;
   padding: 16px 20px;
@@ -1242,7 +1242,7 @@ input[type="text"], input[type="number"], select, textarea {
   .companion-bottom-bar {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     padding: 14px 16px;
   }
 }
@@ -1254,6 +1254,7 @@ input[type="text"], input[type="number"], select, textarea {
   justify-content: center;
   cursor: pointer;
   transition: transform 0.2s ease;
+  margin-top: 4px;
 }
 
 .companion-avatar-wrap:hover {
@@ -1264,21 +1265,24 @@ input[type="text"], input[type="number"], select, textarea {
   flex: 1;
   min-width: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
   width: 100%;
 }
 
 .companion-dialogue-bubble {
-  flex: 1;
+  width: 100%;
   min-width: 0;
   background: #fffef2;
   border: 2px solid #ca8a04;
   border-radius: 16px;
-  padding: 12px 18px;
+  padding: 14px 20px;
   position: relative;
   box-shadow: 0 4px 12px rgba(202, 138, 4, 0.1);
   animation: dialogueExpand 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
+  text-align: left;
 }
 
 @keyframes dialogueExpand {
@@ -1291,8 +1295,7 @@ input[type="text"], input[type="number"], select, textarea {
     content: "";
     position: absolute;
     left: -11px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 24px;
     border-width: 8px 11px 8px 0;
     border-style: solid;
     border-color: transparent #ca8a04 transparent transparent;
@@ -1301,11 +1304,33 @@ input[type="text"], input[type="number"], select, textarea {
     content: "";
     position: absolute;
     left: -8px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25px;
     border-width: 7px 9px 7px 0;
     border-style: solid;
     border-color: transparent #fffef2 transparent transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  .companion-dialogue-bubble::before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 8px 11px 8px;
+    border-style: solid;
+    border-color: transparent transparent #ca8a04 transparent;
+  }
+  .companion-dialogue-bubble::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 7px 9px 7px;
+    border-style: solid;
+    border-color: transparent transparent #fffef2 transparent;
   }
 }
 
@@ -1320,7 +1345,7 @@ input[type="text"], input[type="number"], select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1334,7 +1359,7 @@ input[type="text"], input[type="number"], select, textarea {
   font-weight: 700;
   color: #78350f;
   cursor: pointer;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 8px;
   transition: background 0.15s ease, transform 0.15s ease;
 }
@@ -1346,10 +1371,14 @@ input[type="text"], input[type="number"], select, textarea {
 
 .dialogue-message {
   margin: 0;
-  font-size: 0.94rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: #451a03;
-  line-height: 1.45;
+  line-height: 1.55;
+  text-align: left;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .companion-idle-bar {

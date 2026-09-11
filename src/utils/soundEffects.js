@@ -239,6 +239,31 @@ export function playSuccessChime() {
   }
 }
 
+export const playCorrectChime = playSuccessChime;
+
+// Gentle try-again tone for dyslexia-friendly feedback
+export function playWrongBuzzer() {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(220, now);
+    osc.frequency.exponentialRampToValueAtTime(180, now + 0.2);
+    gain.gain.setValueAtTime(0.06, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.25);
+  } catch {
+    // ignore
+  }
+}
+
 // Diagnostic complete celebration fanfare
 export function playDiagnosticFanfare() {
   if (!soundEnabled) return;

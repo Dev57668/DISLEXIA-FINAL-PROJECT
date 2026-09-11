@@ -22,6 +22,9 @@ import "./3d-website.css";
 import "./jungle-theme.css";
 import HomeScreen from "./components/HomeScreen";
 import FreshWelcomePage from "./components/FreshWelcomePage";
+import Module3Activity from "./components/Module3Activity";
+import { useUserContext } from "./context/UserContext";
+
 import TeacherDashboardView from "./components/TeacherDashboardView";
 import LoginScreen from "./components/LoginScreen";
 import EmailVerificationScreen from "./components/EmailVerificationScreen";
@@ -1552,6 +1555,8 @@ const StageComprehensiveAnalysis = ({
 
 function App() {
   const { t } = useLanguage();
+  const userCtx = useUserContext();
+
 
   const getInitialActiveStudent = () => {
     try {
@@ -1872,6 +1877,8 @@ function App() {
   const [stage2SpeechUnavailable, setStage2SpeechUnavailable] = useState(false);
 
   const [stage2Score, setStage2Score] = useState(() => initialScores.stage2 !== undefined ? initialScores.stage2 : 10);
+  const [stage2CorrectCount, setStage2CorrectCount] = useState(0);
+  const stage2AnsweredQuestionsRef = useRef(new Set());
 
   const stage2RecognitionRef = useRef(null);
 
@@ -2004,10 +2011,10 @@ function App() {
   const [spatialPulse, setSpatialPulse] = useState(0);
   const [pulseType, setPulseType] = useState("cyan");
   const [fxTrigger, setFxTrigger] = useState(0);
-  const [fxScore, setFxScore] = useState(100);
+  const [fxScore, setFxScore] = useState(3);
   const [fxCombo, setFxCombo] = useState(1);
 
-  const trigger3DCelebration = (points = 100, isCorrect = true) => {
+  const trigger3DCelebration = (points = 3, isCorrect = true) => {
     if (isCorrect) {
       setSpatialPulse((p) => p + 1);
       setPulseType("emerald");
@@ -3739,7 +3746,7 @@ function App() {
     };
 
   const renderAppHeader = (activeScreenKey = screen) => {
-    const currentScreenXp = (() => {
+    const currentScreenXp = userCtx ? userCtx.totalXp : (() => {
       switch (screen) {
         case "stage2": return stage2Score;
         case "stage3": return stage3Score;
@@ -3749,6 +3756,7 @@ function App() {
         default: return stageScore;
       }
     })();
+
 
     return (
       <UniversalAppHeader
@@ -3924,11 +3932,12 @@ function App() {
       setStageMessage("");
       setStageHint("");
       setHintUsed(false);
-      setStageScore(
+      const currentCumulative = userCtx ? userCtx.totalXp : (
         Number.isFinite(storedProgress.xp) && storedProgress.xp > 0
           ? storedProgress.xp
           : (storedProgress.correctQuestionIds?.length ? storedProgress.correctQuestionIds.length * 3 : 10)
       );
+      setStageScore(currentCumulative);
       setCompletedQuestions(
         storedProgress.completedQuestions || 27
       );
@@ -3943,11 +3952,13 @@ function App() {
     setStageMessage("");
     setStageHint("");
     setHintUsed(false);
-    setStageScore(
+    const currentCumulative = userCtx ? userCtx.totalXp : (
       Number.isFinite(storedProgress.xp) && storedProgress.xp > 0
         ? storedProgress.xp
         : (storedProgress.correctQuestionIds?.length ? storedProgress.correctQuestionIds.length * 3 : 10)
-      );
+    );
+    setStageScore(currentCumulative);
+
     setCompletedQuestions(
       storedProgress.completedQuestions || 0
     );
@@ -3968,13 +3979,16 @@ function App() {
     const classNumber = getNormalizedClassNumber(studentClass || selectedClass);
     setPlayStage2Levels(createShuffledStage2(classNumber));
 
+    const currentCumulative = userCtx ? userCtx.totalXp : (stageScore || 10);
     setStage2LevelIndex(0);
     setStage2ExerciseIndex(0);
     setStage2Message("");
     setStage2SpokenText("");
     setStage2Accuracy(0);
     setStage2Listening(false);
-    setStage2Score(10);
+    setStage2Score(currentCumulative);
+    setStage2CorrectCount(0);
+    stage2AnsweredQuestionsRef.current = new Set();
     setStage2Hint("");
     setStage2HintUsed(false);
     setStage2ShowHint(false);
@@ -3998,6 +4012,7 @@ function App() {
 
     const classNumber = getNormalizedClassNumber(studentClass || selectedClass);
     setPlayStage3Levels(getStage3LevelsForClass(classNumber));
+    const currentCumulative = userCtx ? userCtx.totalXp : (stage2Score || stageScore || 10);
     setStage3LevelIndex(0);
     setStage3ExerciseIndex(0);
     setStage3Answer("");
@@ -4005,9 +4020,18 @@ function App() {
     setStage3Hint("");
     setStage3HintUsed(false);
     setStage3ShowHint(false);
-    setStage3Score(10);
+    setStage3Score(currentCumulative);
+    resetStagePerformance("stage3");
+    if (questionMistakeTrackerRef.current) {
+      Object.keys(questionMistakeTrackerRef.current).forEach((k) => {
+        if (k.startsWith("stage3") || k.startsWith("c")) {
+          delete questionMistakeTrackerRef.current[k];
+        }
+      });
+    }
     setScreen("stage3");
   };
+
 
   /* =======================================================
      STAGE 4 — MATHS QUEST HANDLERS
@@ -4044,10 +4068,12 @@ function App() {
       if (foundUnanswered) break;
     }
 
+    const currentCumulative = userCtx ? userCtx.totalXp : (classProgress.xp > 0 ? classProgress.xp : 10);
+
     if (!foundUnanswered && (classProgress.completedQuestions >= 30 || classProgress.stageCompleted)) {
       setStage4LevelIndex(2);
       setStage4ExerciseIndex(levels[2].exercises.length - 1);
-      setStage4Score(classProgress.xp > 0 ? classProgress.xp : 10);
+      setStage4Score(currentCumulative);
       setScreen("stage4Report");
       return;
     }
@@ -4059,8 +4085,9 @@ function App() {
     setStage4Hint("");
     setStage4HintUsed(false);
     setStage4EliminatedOptions([]);
-    setStage4Score(classProgress.xp > 0 ? classProgress.xp : 10);
+    setStage4Score(currentCumulative);
     setScreen("stage4");
+
   };
 
   const answerStageFourQuestion = (selectedOption) => {
@@ -4080,6 +4107,9 @@ function App() {
 
     const nextXP = isCorrect && !alreadyCorrect ? stage4Score + 3 : stage4Score;
     setStage4Score(nextXP);
+    if (isCorrect && !alreadyCorrect && userCtx) {
+      userCtx.awardXp(3);
+    }
 
     saveStage4QuestionProgress(selectedClass, currentLevel.id, currentExercise, isCorrect, nextXP);
     recordStagePerformance("stage4", isCorrect, currentExercise, selectedOption);
@@ -4104,6 +4134,9 @@ function App() {
   };
 
   const getMathHint = (exercise) => {
+    if (exercise && exercise.hint) {
+      return exercise.hint;
+    }
     if (!exercise || !exercise.question) {
       return "Read the numbers carefully and break the question down step-by-step.";
     }
@@ -4201,34 +4234,70 @@ function App() {
       }
     }
 
+    // Fractions arithmetic check (must run before integers)
+    const fracMatch = q.match(/(\d+\/\d+)\s*([+\-*/])\s*(\d+\/\d+)/);
+    if (fracMatch) {
+      const op = fracMatch[2];
+      if (op === "+") {
+        return "Fraction Addition Strategy: When denominators are equal, keep the denominator and add the numerators. If different, find a common denominator first.";
+      }
+      if (op === "-") {
+        return "Fraction Subtraction Strategy: When denominators are equal, keep the denominator and subtract the numerators.";
+      }
+    }
+
+    // Decimals arithmetic check (must run before integers)
+    const decMatch = q.match(/(\d+\.\d+)\s*([+\-*/])\s*(\d+\.\d+)/);
+    if (decMatch) {
+      const op = decMatch[2];
+      if (op === "+") {
+        return "Decimal Addition Strategy: Line up the decimal points vertically. Add column by column from right to left (hundredths, tenths, ones), carrying over when needed.";
+      }
+      if (op === "-") {
+        return "Decimal Subtraction Strategy: Line up the decimal points vertically. Subtract column by column from right to left, borrowing from the left column when needed.";
+      }
+    }
+
+    // Clean commas from multi-digit numbers for accurate pattern matching
+    const cleanQ = q.replace(/,/g, '');
+
     // 1. Addition
-    const addMatch = q.match(/(\d+)\s*\+\s*(\d+)/);
+    const addMatch = cleanQ.match(/(\d+)\s*\+\s*(\d+)/);
     if (addMatch) {
       const a = parseInt(addMatch[1], 10);
       const b = parseInt(addMatch[2], 10);
       const bigger = Math.max(a, b);
       const smaller = Math.min(a, b);
+      if (bigger >= 100) {
+        return "Column Addition Strategy: Line up digits by place value (ones, tens, hundreds, thousands). Add column-by-column from right to left, carrying over when a sum reaches 10 or more.";
+      }
       return `Addition Strategy: Start at ${bigger} (the larger number) and count forward ${smaller} more steps, or add the units and tens columns.`;
     }
 
     // 2. Subtraction
-    const subMatch = q.match(/(\d+)\s*-\s*(\d+)/);
+    const subMatch = cleanQ.match(/(\d+)\s*-\s*(\d+)/);
     if (subMatch) {
       const a = parseInt(subMatch[1], 10);
       const b = parseInt(subMatch[2], 10);
+      if (a >= 100) {
+        return "Column Subtraction Strategy: Align numbers by place value. Subtract column by column from right to left, borrowing (regrouping) from the left column when a top digit is smaller than the bottom digit.";
+      }
       return `Subtraction Strategy: Start with ${a} and take away ${b}, or ask: what number added to ${b} makes ${a}?`;
     }
 
     // 3. Multiplication
-    const mulMatch = q.match(/(\d+)\s*[×*x]\s*(\d+)/);
+    const mulMatch = cleanQ.match(/(\d+)\s*[×*x]\s*(\d+)/);
     if (mulMatch) {
       const a = parseInt(mulMatch[1], 10);
       const b = parseInt(mulMatch[2], 10);
+      if (a >= 20 || b >= 20) {
+        return "Multiplication Strategy: Break large numbers into tens and ones (e.g. 45 × 12 = 45 × 10 + 45 × 2), or use vertical grid multiplication.";
+      }
       return `Multiplication Strategy: Think of equal groups: ${a} groups of ${b}, or add ${a} repeated ${b} times.`;
     }
 
     // 4. Division
-    const divMatch = q.match(/(\d+)\s*[÷/]\s*(\d+)/);
+    const divMatch = cleanQ.match(/(\d+)\s*[÷/]\s*(\d+)/);
     if (divMatch) {
       const a = parseInt(divMatch[1], 10);
       const b = parseInt(divMatch[2], 10);
@@ -4470,6 +4539,7 @@ function App() {
 
     const newXP = Math.max(0, stage4Score - 5);
     setStage4Score(newXP);
+    if (userCtx) userCtx.spendXp(5);
     setStage4HintUsed(true);
     setStage4EliminatedOptions([]);
     const hintText = getMathHint(currentExercise);
@@ -4602,10 +4672,12 @@ function App() {
       if (foundUnanswered) break;
     }
 
+    const currentCumulative = userCtx ? userCtx.totalXp : (classProgress.xp > 0 ? classProgress.xp : 10);
+
     if (!foundUnanswered && (classProgress.completedQuestions >= 16 || classProgress.stageCompleted)) {
       setShapesLevelIndex(1);
       setShapesExerciseIndex(levels[1].exercises.length - 1);
-      setShapesScore(classProgress.xp > 0 ? classProgress.xp : 10);
+      setShapesScore(currentCumulative);
       setScreen("shapesReport");
       return;
     }
@@ -4618,8 +4690,9 @@ function App() {
     setShapesHintUsed(false);
     setShapesEliminatedOptions([]);
     setShowShapeFact(false);
-    setShapesScore(classProgress.xp > 0 ? classProgress.xp : 10);
+    setShapesScore(currentCumulative);
     setScreen("shapes");
+
   };
 
   const answerShapesQuestion = (selectedOption) => {
@@ -4639,6 +4712,9 @@ function App() {
 
     const nextXP = isCorrect && !alreadyCorrect ? shapesScore + 3 : shapesScore;
     setShapesScore(nextXP);
+    if (isCorrect && !alreadyCorrect && userCtx) {
+      userCtx.awardXp(3);
+    }
 
     saveShapesQuestionProgress(selectedClass, currentLevel.id, currentExercise, isCorrect, nextXP);
     recordStagePerformance("shapes", isCorrect, currentExercise, selectedOption);
@@ -4683,6 +4759,7 @@ function App() {
 
     const newXP = Math.max(0, shapesScore - 5);
     setShapesScore(newXP);
+    if (userCtx) userCtx.spendXp(5);
     setShapesHintUsed(true);
     setShapesEliminatedOptions([]);
     const hintText = currentExercise.hint || "Look at the shape's sides, corners, and real-world examples to find the answer.";
@@ -5069,6 +5146,7 @@ function App() {
 
     const newXP = Math.max(0, stage2Score - 5);
     setStage2Score(newXP);
+    if (userCtx) userCtx.spendXp(5);
     setStage2HintUsed(true);
     const hintText = getStage2Hint(exercise);
     setStage2Hint(hintText);
@@ -5157,7 +5235,13 @@ function App() {
         setStage2Message(
           "Accurate match! Your oral reading matched the target text."
         );
+        const qKey = `${stage2LevelIndex}_${stage2ExerciseIndex}`;
+        if (!stage2AnsweredQuestionsRef.current.has(qKey)) {
+          stage2AnsweredQuestionsRef.current.add(qKey);
+          setStage2CorrectCount((previous) => previous + 1);
+        }
         setStage2Score((previous) => previous + 1);
+        if (userCtx) userCtx.awardXp(1);
         recordStagePerformance("stage2", true, exercise, bestSpoken);
       } else {
         setStage2Message(
@@ -5252,7 +5336,13 @@ function App() {
   const acceptStage2ReadingManually = () => {
     setStage2Accuracy(100);
     setStage2Message("Accurate reading accepted! +1 XP earned.");
+    const qKey = `${stage2LevelIndex}_${stage2ExerciseIndex}`;
+    if (!stage2AnsweredQuestionsRef.current.has(qKey)) {
+      stage2AnsweredQuestionsRef.current.add(qKey);
+      setStage2CorrectCount((previous) => previous + 1);
+    }
     setStage2Score((previous) => previous + 1);
+    if (userCtx) userCtx.awardXp(1);
     const exercise = playStage2Levels[stage2LevelIndex]?.exercises?.[stage2ExerciseIndex];
     if (exercise) {
       recordStagePerformance("stage2", true, exercise, stage2SpokenText || exercise.text);
@@ -5602,6 +5692,7 @@ function App() {
       Math.max(0, stageScore - 5);
 
     setStageScore(newXP);
+    if (userCtx) userCtx.spendXp(5);
     setStageHint(
       getStage1Hint(exercise)
     );
@@ -5711,6 +5802,9 @@ function App() {
           : stageScore;
 
       setStageScore(nextXP);
+      if (isCorrect && !alreadyCorrect && userCtx) {
+        userCtx.awardXp(3);
+      }
 
       // SAVE IMMEDIATELY — before moving to the next question.
       // Wrong answers are also saved as completed.
@@ -6373,12 +6467,27 @@ function App() {
         0
       );
 
+    const safeCorrectCount = Math.min(
+      totalQuestions,
+      stage2CorrectCount > 0
+        ? stage2CorrectCount
+        : (stagePerformance.stage2?.firstTrySuccess || 0)
+    );
+
     const percentage =
-      Math.round(
-        (stage2Score /
-          totalQuestions) *
-        100
-      );
+      totalQuestions > 0
+        ? Math.min(
+            100,
+            Math.max(
+              0,
+              Math.round(
+                (safeCorrectCount /
+                  totalQuestions) *
+                100
+              )
+            )
+          )
+        : 100;
 
     return (
       <div className="app">
@@ -6445,7 +6554,7 @@ function App() {
                   READING SCORE
                 </strong>
                 <p>
-                  {stage2Score} /{" "}
+                  {safeCorrectCount} /{" "}
                   {totalQuestions}
                 </p>
               </div>
@@ -6458,9 +6567,7 @@ function App() {
                   ACCURACY
                 </strong>
                 <p>
-                  {totalQuestions > 0
-                    ? Math.round((stage2Score / totalQuestions) * 100)
-                    : 0}%
+                  {percentage}%
                 </p>
               </div>
 
@@ -9302,410 +9409,63 @@ function App() {
         ? playStage3Levels
         : getStage3LevelsForClass(selectedClass);
 
-    const level = stage3Bank[stage3LevelIndex] || stage3Bank[0];
-    const exercise =
-      level?.exercises?.[stage3ExerciseIndex] || level?.exercises?.[0];
-
-    if (!level || !exercise) {
-      return (
-        <div className="app">
-          <SpatialBackground3D pulseTrigger={spatialPulse} pulseType={pulseType} />
-          <ParticleFX trigger={fxTrigger} score={fxScore} combo={fxCombo} />
-          {renderAppHeader("stages")}
-          <div className="page" style={{ textAlign: "center", padding: "80px 20px" }}>
-            <div className="stage-card" style={{ maxWidth: 500, margin: "0 auto", padding: 30 }}>
-              <h2>Treehouse Glade Ready</h2>
-              <p style={{ margin: "16px 0 24px" }}>Written expression challenges for Class {selectedClass} are ready.</p>
-              <button className="save-button" onClick={() => { setStage3LevelIndex(0); setStage3ExerciseIndex(0); }}>Enter Treehouse</button>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    const totalQuestions = stage3Bank.reduce(
-      (sum, item) => sum + item.exercises.length,
-      0
-    );
-
-    const completedBefore =
-      stage3Bank
-        .slice(0, stage3LevelIndex)
-        .reduce(
-          (sum, item) => sum + item.exercises.length,
-          0
-        ) + stage3ExerciseIndex;
-
-    const completed =
-      Math.min(
-        completedBefore +
-        (stage3Message === "CORRECT!" ? 1 : 0),
-        totalQuestions
-      );
-
-    const overallProgress =
-      Math.round((completed / totalQuestions) * 100);
-
     return (
       <div className="app">
         <SpatialBackground3D pulseTrigger={spatialPulse} pulseType={pulseType} />
         <ParticleFX trigger={fxTrigger} score={fxScore} combo={fxCombo} />
         {renderAppHeader("stages")}
-        <div className="page">
-          <div className="top-bar">
-            <button
-              className="back-button"
-              onClick={() => setScreen("stages")}
-            >
-              ← STAGES
-            </button>
+        <Module3Activity
+          classNumber={selectedClass}
+          levels={stage3Bank}
+          levelIndex={stage3LevelIndex}
+          exerciseIndex={stage3ExerciseIndex}
+          currentXp={userCtx ? userCtx.totalXp : stage3Score}
+          onAwardXp={(amt = 3) => {
+            if (userCtx) {
+              userCtx.awardXp(amt);
+            } else {
+              setStage3Score((prev) => prev + amt);
+            }
+            trigger3DCelebration(amt, true);
+          }}
+          onDeductXp={(amt = 5) => {
+            if (userCtx) {
+              const success = userCtx.spendXp(amt);
+              if (success) {
+                setStage3Score(userCtx.totalXp - amt);
+              }
+              return success;
+            } else {
+              if (stage3Score < amt) return false;
+              setStage3Score((prev) => prev - amt);
+              return true;
+            }
+          }}
+          onRecordPerformance={(stageKey, isCorrect, exercise, answer) => {
+            recordStagePerformance(stageKey, isCorrect, exercise, answer);
+          }}
+          onNextQuestion={() => {
+            const currentLevel = stage3Bank[stage3LevelIndex] || stage3Bank[0];
+            const lastQuestion =
+              stage3ExerciseIndex === (currentLevel?.exercises?.length || 0) - 1;
+            const lastLevel = stage3LevelIndex === stage3Bank.length - 1;
 
-            <div className="score-display">
-              {stage3Score} XP
-            </div>
-          </div>
-
-          <section className="stage-card">
-            <p className="eyebrow">
-              Class {selectedClass} • Module 03: Written Expression
-            </p>
-
-            <h1>Written Expression & Language Encoding</h1>
-
-            <p className="stage-description">
-              CAST SPELLING SPELLS AND EXPAND WORD UNDERSTANDING STEP BY STEP.
-            </p>
-
-            {/* CURRENT LEVEL DISPLAY */}
-            <div className="current-level-display">
-              <span className="current-level-pill">
-                Level {stage3LevelIndex + 1} • {formatDifficulty(level.difficulty)}
-              </span>
-            </div>
-
-            <div className="progress-area">
-              <div className="progress-label">
-                <span>Module 03 Progress</span>
-                <span>{completed} / {totalQuestions}</span>
-              </div>
-
-              <div className="progress-track">
-                <div
-                  className="progress-fill"
-                  style={{
-                    width: `${overallProgress}%`,
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="exercise-card">
-              <div className="exercise-header">
-                <span className="exercise-type">
-                  Module 03: Written Expression
-                </span>
-                <span className="question-level-badge">
-                  Level {stage3LevelIndex + 1} • {formatDifficulty(level.difficulty)}
-                </span>
-                <span>
-                  QUESTION {stage3ExerciseIndex + 1} / {level.exercises.length}
-                </span>
-              </div>
-
-              <h2>{exercise.prompt || exercise.question}</h2>
-
-              {Array.isArray(exercise.options) && exercise.options.length > 0 && (
-                <div
-                  className="stage3-options"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                    gap: "10px",
-                    marginTop: "20px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {exercise.options.map((option, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      className={
-                        "stage3-option-button " +
-                        (stage3Answer === option ? "selected " : "") +
-                        (stage3Message === "CORRECT!" && stage3Answer === option
-                          ? "correct "
-                          : "") +
-                        (stage3Message === "WRONG ANSWER" && stage3Answer === option
-                          ? "wrong "
-                          : "")
-                      }
-                      disabled={stage3Message === "CORRECT!"}
-                      onClick={() => {
-                        setStage3Answer(option);
-                        setStage3Message("");
-                      }}
-                      style={{
-                        padding: "12px 16px",
-                        border: stage3Answer === option ? "2px solid #2e7d32" : "2px solid #ddd",
-                        background: stage3Answer === option ? "rgba(46, 125, 50, 0.15)" : "transparent",
-                        borderRadius: "10px",
-                        textAlign: "center",
-                        fontWeight: "600",
-                        cursor: "pointer",
-                        fontSize: "16px",
-                        color: "inherit",
-                        transition: "all 0.2s ease",
-                      }}
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              <div
-                className="answer-options"
-                style={{
-                  display: "grid",
-                  gap: "12px",
-                  marginTop: "20px",
-                }}
-              >
-                <div
-                  className="answer-options"
-                  style={{
-                    marginTop: "20px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "12px",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="text"
-                    value={stage3Answer}
-                    onChange={(e) => setStage3Answer(e.target.value)}
-                    placeholder="Type your answer here..."
-                    disabled={stage3Message === "CORRECT!"}
-                    style={{
-                      width: "100%",
-                      maxWidth: "500px",
-                      padding: "14px 16px",
-                      fontSize: "18px",
-                      borderRadius: "12px",
-                      border: "2px solid #ddd",
-                      textAlign: "center",
-                    }}
-                  />
-
-                  <button
-                    type="button"
-                    className="primary-button"
-                    disabled={
-                      !stage3Answer.trim() ||
-                      stage3Message === "CORRECT!"
-                    }
-                    onClick={() => {
-                      const typedAnswer = stage3Answer.trim().toLowerCase();
-                      const correctAnswer = String(exercise.answer || "")
-                        .trim()
-                        .toLowerCase();
-
-                      if (typedAnswer === correctAnswer) {
-                        setStage3Message("CORRECT!");
-                        setStage3Score((previous) => previous + 3);
-                        recordStagePerformance("stage3", true, exercise, typedAnswer);
-                      } else {
-                        setStage3Message("WRONG ANSWER");
-                        recordStagePerformance("stage3", false, exercise, typedAnswer);
-                      }
-                    }}
-                  >
-                    CHECK ANSWER
-                  </button>
-                </div>
-              </div>
-
-              {stage3Message === "WRONG ANSWER" && (
-                <>
-                  <div
-                    className="feedback wrong-feedback"
-                    style={{ marginTop: "18px" }}
-                  >
-                    WRONG ANSWER
-                  </div>
-
-                  {!stage3HintUsed && (
-                    <button
-                      type="button"
-                      className="btn-unlock-clue"
-                      style={{ marginTop: "15px" }}
-                      disabled={stage3Score < 5}
-                      onClick={useStage3Hint}
-                    >
-                      <IconLightbulb size={16} /> Conceptual Hint (-5 XP)
-                    </button>
-                  )}
-
-                  {stage3Hint && (
-                    <div className="shape-fact-card pedagogical-clue-card" style={{ marginTop: "16px" }}>
-                      <div className="shape-fact-header">
-                        <span className="shape-fact-title">
-                          <IconLightbulb size={18} /> PEDAGOGICAL HINT
-                        </span>
-                        <button
-                          type="button"
-                          className="shape-fact-audio-btn read-aloud-btn"
-                          onClick={() => {
-                            if ("speechSynthesis" in window) {
-                              window.speechSynthesis.cancel();
-                              const u = new SpeechSynthesisUtterance(stage3Hint);
-                              u.rate = 0.85;
-                              window.speechSynthesis.speak(u);
-                            }
-                          }}
-                        >
-                          <IconVolume size={14} /> Read Hint Aloud
-                        </button>
-                      </div>
-                      <div className="shape-fact-body">
-                        {stage3Hint}
-                      </div>
-                    </div>
-                  )}
-
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    style={{ marginTop: "15px" }}
-                    onClick={() => {
-                      setStage3Answer("");
-                      setStage3Message("");
-                      setStage3Hint("");
-                      setStage3ShowHint(false);
-                    }}
-                  >
-                    Try Again
-                  </button>
-                </>
-              )}
-
-              {stage3Message && stage3Message !== "CORRECT!" && stage3Message !== "WRONG ANSWER" && (
-                <div
-                  className="feedback wrong-feedback"
-                  style={{ marginTop: "18px" }}
-                >
-                  {stage3Message}
-                </div>
-              )}
-
-              {/* DEDICATED COMPANION AREA (BELOW ANSWERS) */}
-              <div className="companion-bottom-bar">
-                <div
-                  className="companion-avatar-wrap"
-                  onClick={() => {
-                    if (stage3ShowHint) {
-                      setStage3ShowHint(false);
-                    } else if (stage3HintUsed) {
-                      setStage3ShowHint(true);
-                    } else {
-                      useStage3Hint();
-                    }
-                  }}
-                  title="Click Pip the Vine Weaver Monkey for a hint!"
-                >
-                  <PipMonkeyCompanion size="small" />
-                </div>
-
-                <div className="companion-dialogue-col">
-                  {stage3ShowHint ? (
-                    <div className="companion-dialogue-bubble">
-                      <div className="dialogue-header">
-                        <span className="companion-name-tag">
-                          <IconLightbulb size={14} /> Pip's Vine Clue
-                        </span>
-                        <button
-                          type="button"
-                          className="btn-dismiss-hint"
-                          onClick={() => setStage3ShowHint(false)}
-                        >
-                          ✕ Hide
-                        </button>
-                      </div>
-                      <p className="dialogue-message">
-                        {stage3Hint || exercise?.hint || "Untangle the scrambled letters one by one. Tap each vine letter to weave them into the correct word!"}
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="companion-idle-bar">
-                      <button
-                        type="button"
-                        className="btn-request-hint"
-                        onClick={useStage3Hint}
-                      >
-                        <IconLightbulb size={16} /> Need a Hint from Pip?
-                      </button>
-                      <span className="companion-idle-subtext">
-                        {stage3Score < 5 && !stage3HintUsed
-                          ? `You need at least 5 XP to use a hint. (Current: ${stage3Score} XP)`
-                          : "Pip is swinging through the vines. Tap if you want a spelling clue!"}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {stage3Message === "CORRECT!" && (
-                <>
-                  <div
-                    className="feedback correct-feedback"
-                    style={{ marginTop: "18px" }}
-                  >
-                    CORRECT! +3 XP
-                  </div>
-
-                  <button
-                    type="button"
-                    className="save-button next-button"
-                    style={{ marginTop: "18px" }}
-                    onClick={() => {
-                      const lastQuestion =
-                        stage3ExerciseIndex === level.exercises.length - 1;
-
-                      const lastLevel =
-                        stage3LevelIndex === stage3Bank.length - 1;
-
-                      if (!lastQuestion) {
-                        setStage3ExerciseIndex(
-                          (previous) => previous + 1
-                        );
-                      } else if (!lastLevel) {
-                        setStage3LevelIndex((prev) => prev + 1);
-                        setStage3ExerciseIndex(0);
-                      }
-                      else {
-                        setScreen("stage3Report");
-                      }
-
-                      setStage3Answer("");
-                      setStage3Message("");
-                      setStage3Hint("");
-                      setStage3HintUsed(false);
-                      setStage3ShowHint(false);
-                    }}
-                  >
-                    {stage3LevelIndex ===
-                      stage3Bank.length - 1 &&
-                      stage3ExerciseIndex ===
-                      level.exercises.length - 1
-                      ? "Complete Module 3"
-                      : "NEXT QUESTION →"}
-                  </button>
-                </>
-              )}
-            </div>
-          </section>
-        </div>
+            if (!lastQuestion) {
+              setStage3ExerciseIndex((prev) => prev + 1);
+            } else if (!lastLevel) {
+              setStage3LevelIndex((prev) => prev + 1);
+              setStage3ExerciseIndex(0);
+            } else {
+              setScreen("stage3Report");
+            }
+          }}
+          onCompleteModule={() => {
+            setScreen("stage3Report");
+          }}
+          onBackToStages={() => {
+            setScreen("stages");
+          }}
+        />
       </div>
     );
   }
@@ -9725,9 +9485,11 @@ function App() {
       0
     );
 
-    const percentage = totalStage3Questions
-      ? Math.round((stage3Score / (totalStage3Questions * 3)) * 100)
-      : 0;
+    const currentReportXp = userCtx ? userCtx.totalXp : stage3Score;
+    const stage3Perf = stagePerformance.stage3 || { firstTrySuccess: 0, wrongAttempts: 0, hintsUsed: 0 };
+    const percentage = totalStage3Questions > 0
+      ? Math.min(100, Math.max(0, Math.round(((stage3Perf.firstTrySuccess || 0) / totalStage3Questions) * 100)))
+      : 100;
 
     return (
       <div className="app">
@@ -9743,7 +9505,7 @@ function App() {
             <p>YOU COMPLETED WRITING & UNDERSTANDING PRACTICE.</p>
 
             <div className="final-score" style={{ margin: "25px 0" }}>
-              {stage3Score} XP
+              {currentReportXp} XP
               <div style={{ fontSize: "18px", marginTop: "8px" }}>
                 {totalStage3Questions} ACTIVITIES COMPLETED
               </div>
@@ -9762,7 +9524,7 @@ function App() {
               totalQuestions={totalStage3Questions}
               studentName={studentName}
               studentClass={selectedClass}
-              score={stage3Score}
+              score={currentReportXp}
               onRestart={() => enterStageThree()}
               onNextStage={enterStageFour}
               nextStageTitle="Continue to Module 04 (Numerical Cognition) →"

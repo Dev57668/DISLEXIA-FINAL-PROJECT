@@ -160,6 +160,8 @@ export function getActiveProfile() {
   return null;
 }
 
+export const getActiveStudent = getActiveProfile;
+
 export const getProfilePerformanceKey = (profileId) =>
   profileId ? `dyslexiaQuestPerformance_${profileId}` : "dyslexiaQuestPerformance";
 

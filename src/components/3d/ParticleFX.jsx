@@ -1,7 +1,11 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function ParticleFX({ trigger = 0, score = 100, combo = 1 }) {
+export default function ParticleFX({ trigger = 0, score = 3, combo = 1 }) {
   const [active, setActive] = useState(false);
+
+  // Normalize display score: only display the actual per-question reward (1-10 XP), never large cumulative totals
+  const displayScore =
+    typeof score === "number" && score > 0 && score <= 10 ? score : 3;
 
   useEffect(() => {
     if (!trigger) return;
@@ -44,7 +48,7 @@ export default function ParticleFX({ trigger = 0, score = 100, combo = 1 }) {
           letterSpacing: "0.02em"
         }}
       >
-        +{score} XP
+        +{displayScore} XP
       </div>
 
       {combo > 1 && (
